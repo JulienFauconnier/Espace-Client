@@ -1,0 +1,23 @@
+{ "error" : "",
+  "response" : { "infos" : { "nbpages" : 1,
+          "nbperpage" : 10,
+          "nbtotal" : "1",
+          "pagenum" : "1"
+        },
+      "result" : { "corporation_2739" : { "contactDetails" : "corporation",
+              "contactId" : "2739",
+              "contactMore" : "",
+              "contactType" : "corporation",
+              "email" : "",
+              "fax" : "",
+              "fullName" : "TESTDOCUMENTATION",
+              "id" : "corporation_2739",
+              "name" : "",
+              "pic" : "",
+              "position" : "",
+              "status" : "ok",
+              "tel" : ""
+            } }
+    },
+  "status" : "success"
+}
