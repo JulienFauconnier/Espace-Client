@@ -23,6 +23,6 @@ $request = array(
 );
  
 $client = sellsyConnect::load()->requestApi($request);
-echo $client->response->client->name;
+echo $client->response->address;
 
 ?>
