@@ -26,31 +26,31 @@ if($_POST['validate'] != 'ok')
 </form>
 
 <?php
+
 }
 else
 {
 
 $request = array(
 		'method' => 'Document.create',
-		'params' => Array (
-			'document' 		=> Array (
-				'doctype'		=> 'estimate',								// Valeur "estimate"
-				'thirdid'		=> '1452907',							// Ici utiliser $_SESSION[idsellsy] ?
-				//'tags'		=> 'espace_client'						    // facultatif, utile pour trier les devis réalisés par les clients et ceux réalisés en interne
+		'params' => array (
+			'document' 	=> array (
+				'doctype'		=> 'estimate',				// Valeur "estimate"
+				'thirdid'		=> '1470593',				// Ici utiliser $_SESSION[idsellsy] ?
 			),
-			'row' => Array (
-				'1' => Array (
-					'row_type'		=> 'item',
-					'row_unit'		=> "unité",
-					'row_unitAmount'	=> '500',
-					'row_tax'		=> '10',
+			'row' => array (
+				'1' => array (
+					'row_type'				=> 'item',
+					'row_unit'				=> "unité",
+					'row_unitAmount'		=> '500',
+					'row_tax'				=> '10',
 					'row_purchaseAmount'	=> '550'
 				),
-				'2' => Array (
-					'row_type'		=> 'item',
-					'row_unit'		=> "unité",
-					'row_unitAmount'	=> '500',
-					'row_tax'		=> '10',
+				'2' => array (
+					'row_type'				=> 'item',
+					'row_unit'				=> "unité",
+					'row_unitAmount'		=> '500',
+					'row_tax'				=> '10',
 					'row_purchaseAmount'	=> '550'
 				)
 			)
