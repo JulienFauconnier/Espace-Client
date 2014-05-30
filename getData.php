@@ -25,59 +25,25 @@ return $client->response->corporation->mainaddressid;
 //
 // Obtenir liste des Articles
 //
-function getArticles(){
-$request =  array( 
+function Catalogue($type){
+$request =  array(
 	'method' => 'Catalogue.getList',
 	'params' => array(
-		'type'	=> 'item',
-		'order' => array(
-			'direction'	=> {{direction}},
-			'order'		=> {{order}},
-		),
+		'type'	=> $type,
+		/*
 		'pagination' => array(
 			'pagenum'	=> {{pagenum}},
 		),
+		*/
 		'search' => array(
-			'name'			=> {{name}},
-			'tags' 			=> {{tags}},
-			'inPos'			=> {{inPos}},
-			'rateCategory'		=> {{rateCategory}},
-			'useDeclination'	=> {{useDeclination}},
-			'combineDecli'		=> {{combineDecli}}
+			'tags' 			=> 'visible'
 		)
 	)
 );
 
-return sellsyConnect::load()->requestApi($request);
-}
-
-//
-// Obtenir liste des Services
-//
-function getServices(){
-$request =  array( 
-	'method' => 'Catalogue.getList',
-	'params' => array(
-		'type'	=> 'service',
-		'order' => array(
-			'direction'	=> {{direction}},
-			'order'		=> {{order}},
-		),
-		'pagination' => array(
-			'pagenum'	=> {{pagenum}},
-		),
-		'search' => array(
-			'name'			=> {{name}},
-			'tags' 			=> {{tags}},
-			'inPos'			=> {{inPos}},
-			'rateCategory'		=> {{rateCategory}},
-			'useDeclination'	=> {{useDeclination}},
-			'combineDecli'		=> {{combineDecli}}
-		)
-	)
-);
-
-return sellsyConnect::load()->requestApi($request);
+$resultat = sellsyConnect::load()->requestApi($request);
+$ret = $resultat->response->result;
+return $ret;
 }
 
 ?>
