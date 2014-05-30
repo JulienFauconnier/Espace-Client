@@ -31,35 +31,52 @@ if($_POST['validate'] != 'ok')
 else
 {
 
+$type = 'item';
+$linked = '1707689';
+$name = 'test';
+$note = 'blablabla';
+$unit = 'unité';
+$unitA = '550';
+$tax = '8.5';
+$qt = '2';
+$pA = $unitA * $qt * (($tax / 100) + 1); 
+
 $request = array(
-		'method' => 'Document.create',
-		'params' => array (
-			'document' 	=> array (
-				'doctype'		=> 'estimate',				// Valeur "estimate"
-				'thirdid'		=> '1470593',				// Ici utiliser $_SESSION[idsellsy] ?
-			),
-			'row' => array (
-				'1' => array (
-					'row_type'				=> 'item',
-					'row_unit'				=> "unité",
-					'row_unitAmount'		=> '500',
-					'row_tax'				=> '10',
-					'row_purchaseAmount'	=> '550'
-				),
-				'2' => array (
-					'row_type'				=> 'item',
-					'row_unit'				=> "unité",
-					'row_unitAmount'		=> '500',
-					'row_tax'				=> '10',
-					'row_purchaseAmount'	=> '550'
-				)
+	'method' => 'Document.create',
+	'params' => array(
+		'document' 	=> array(
+			'doctype'				=> 'estimate',
+			'thirdid'				=> '1470593'
+			//'displayedDate'			=> {{displayedDate}},
+			//'subject'				=> {{document_subject}},
+			//'notes'					=> {{document_notes}},
+			//'tags'					=> {{document_tags}},
+			//'displayShipAddress'	=> {{displayshippaddress_enum}},
+			//'rateCategory'			=> {{rateCategory}},
+			//'globalDiscount'		=> {{globalDiscount}},
+			//'globalDiscountUnit'	=> {{globalDiscountUnit}},
+			//'hasDoubleVat'		=> {{hasDoubleVat}}
+		),
+		'row' => array(
+			'1' => array(
+				'row_type'				=> 'item',
+				//'row_linkedid'		=> {{catalogue_id_link}},
+				'row_name'				=> $name,
+				'row_notes'				=> $note,
+				'row_unit'				=> $unit,
+				'row_unitAmount'		=> $unitA,
+				'row_tax'				=> $tax,
+				//'row_taxid'			=> {{row_taxid}},
+				//'row_tax2id'			=> {{row_tax2id}},
+				'row_qt'				=> $qt,
+				//'row_isOption'		=> {{row_option}},
+				'row_purchaseAmount'	=> $pA
 			)
 		)
-	);
+	)
+);
 
-$res = sellsyConnect::load()->requestApi($request);
-echo $res->response->doc_id;
-echo $res->response->status;
+echo sellsyConnect::load()->requestApi($request);
 
 }
 

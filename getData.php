@@ -1,6 +1,6 @@
 <?php
 
-include("initAPI.php");
+//include("initAPI.php");
 
 // Insérer ici la vérification de la connexion
 
@@ -23,20 +23,61 @@ return $client->response->corporation->mainaddressid;
 */
 
 //
-// Obtenir produit du client connecté
+// Obtenir liste des Articles
 //
-function produit() {
-
+function getArticles(){
 $request =  array( 
-	'method' => 'Catalogue.getOne', 
-	'params' => array ( 
-		'type' 		=> 'item',
-		'id' 		=> '1707689'
+	'method' => 'Catalogue.getList',
+	'params' => array(
+		'type'	=> 'item',
+		'order' => array(
+			'direction'	=> {{direction}},
+			'order'		=> {{order}},
+		),
+		'pagination' => array(
+			'pagenum'	=> {{pagenum}},
+		),
+		'search' => array(
+			'name'			=> {{name}},
+			'tags' 			=> {{tags}},
+			'inPos'			=> {{inPos}},
+			'rateCategory'		=> {{rateCategory}},
+			'useDeclination'	=> {{useDeclination}},
+			'combineDecli'		=> {{combineDecli}}
+		)
 	)
 );
- 
-$client = sellsyConnect::load()->requestApi($request);
-return $client->response;
+
+return sellsyConnect::load()->requestApi($request);
+}
+
+//
+// Obtenir liste des Services
+//
+function getServices(){
+$request =  array( 
+	'method' => 'Catalogue.getList',
+	'params' => array(
+		'type'	=> 'service',
+		'order' => array(
+			'direction'	=> {{direction}},
+			'order'		=> {{order}},
+		),
+		'pagination' => array(
+			'pagenum'	=> {{pagenum}},
+		),
+		'search' => array(
+			'name'			=> {{name}},
+			'tags' 			=> {{tags}},
+			'inPos'			=> {{inPos}},
+			'rateCategory'		=> {{rateCategory}},
+			'useDeclination'	=> {{useDeclination}},
+			'combineDecli'		=> {{combineDecli}}
+		)
+	)
+);
+
+return sellsyConnect::load()->requestApi($request);
 }
 
 ?>
