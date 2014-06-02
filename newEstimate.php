@@ -2,6 +2,7 @@
 
 include("initAPI.php");
 include("getData.php");
+include("setData.php");
 
 // Insérer ici la vérification de la connexion
 
@@ -19,28 +20,22 @@ if($_POST['validate'] != 'ok')
 		<label> Articles </label>
 		<select name ="choix_article">
 			<?php
-			$articles = Catalogue('item');
+			$articles = getCatalogue('item');
    			foreach ($articles as $article){
-   				echo '<option value="'.$article->name.'">'.$article->name.'</option>';
+   				echo '<option value="'.$article->id.'">'.$article->name.'</option>';
    			}
 			?>
 		</select>
-		<?php
-		$art = Catalogue('item');
-		?>
 		<br/>
 		<label> Services </label>
-		<select name = "choixservice">
+		<select name = "choix_service">
 			<?php
-			$services = Catalogue('service');
+			$services = getCatalogue('service');
    			foreach ($services as $service){
-   				echo '<option value="'.$service->name.'">'.$service->name.'</option>';
+   				echo '<option value="'.$service->id.'">'.$service->name.'</option>';
    			}
 			?>
 		</select>
-		<?php
-		$ser = Catalogue('item');
-		?>
 		<br/>
 		<div class="center">
 			</br><input type="submit" value="Envoyer"><input type="reset" value="R&eacute;initialiser" ></br>
@@ -55,52 +50,10 @@ if($_POST['validate'] != 'ok')
 else
 {
 
-$type = 'item';
-$linked = '1707689';
-$name = $_POST['choix_article'];
-$note = 'blablabla';
-$unit = 'unité';
-$unitA = '550';
-$tax = '8.5';
-$qt = '2';
-$pA = $unitA * $qt * (($tax / 100) + 1); 
+$row[0] = processObject('item', $_POST['choix_article'], 1);
+$row[1] = processObject('service', $_POST['choix_service'], 1);
 
-$request = array(
-	'method' => 'Document.create',
-	'params' => array(
-		'document' 	=> array(
-			'doctype'				=> 'estimate',
-			'thirdid'				=> '1470593',
-			//'displayedDate'			=> {{displayedDate}},
-			//'subject'				=> {{document_subject}},
-			//'notes'					=> {{document_notes}},
-			'tags'					=> 'devis_prospect'
-			//'displayShipAddress'	=> {{displayshippaddress_enum}},
-			//'rateCategory'			=> {{rateCategory}},
-			//'globalDiscount'		=> {{globalDiscount}},
-			//'globalDiscountUnit'	=> {{globalDiscountUnit}},
-			//'hasDoubleVat'		=> {{hasDoubleVat}}
-		),
-		'row' => array(
-			'1' => array(
-				'row_type'				=> 'item',
-				//'row_linkedid'		=> {{catalogue_id_link}},
-				'row_name'				=> $name,
-				'row_notes'				=> $note,
-				'row_unit'				=> $unit,
-				'row_unitAmount'		=> $unitA,
-				'row_tax'				=> $tax,
-				//'row_taxid'			=> {{row_taxid}},
-				//'row_tax2id'			=> {{row_tax2id}},
-				'row_qt'				=> $qt,
-				//'row_isOption'		=> {{row_option}},
-				'row_purchaseAmount'	=> $pA
-			)
-		)
-	)
-);
-
-sellsyConnect::load()->requestApi($request);
+setEstimate($row);
 
 }
 
