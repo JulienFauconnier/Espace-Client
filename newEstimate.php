@@ -14,34 +14,46 @@ if($_POST['validate'] != 'ok')
 ?>
 
 <h2>Estimation</h2>
-			
-<form name="ajout" id="ajout" method="post" action="newEstimate.php">
-	<fieldset>
-		<label> Articles </label>
-		<select name ="choix_article">
-			<?php
-			$articles = getCatalogue('item');
-   			foreach ($articles as $article){
-   				echo '<option value="'.$article->id.'">'.$article->name.'</option>';
-   			}
-			?>
-		</select>
-		<br/>
-		<label> Services </label>
-		<select name = "choix_service">
-			<?php
-			$services = getCatalogue('service');
-   			foreach ($services as $service){
-   				echo '<option value="'.$service->id.'">'.$service->name.'</option>';
-   			}
-			?>
-		</select>
-		<br/>
-		<div class="center">
-			</br><input type="submit" value="Envoyer"><input type="reset" value="R&eacute;initialiser" ></br>
-		</div>
-		<input type="hidden" name="validate" id="validate" value="ok"/>
-	</fieldset>
+            
+<form name = "ajout" id = "ajout" method = "post" action = "newEstimate.php">
+<fieldset>
+<label> Categories </label>
+<select id = "choix_categorie" name = "choix_categorie">
+<?php
+$categories = getCategories();
+foreach ($categories as $categorie){
+    echo '<option value="'.$categorie->word.'">'.rtrim($categorie->word, '_v').'</option>';
+}
+?>
+</select>
+<br/>
+<label> Articles </label>
+<select id = "choix_article" name = "choix_article">
+<?php
+$cat = 'test_v';
+$articles = getCatalogue('item', $cat);
+foreach ($articles as $article){
+    echo '<option value="'.$article->id.'">'.$article->name.'</option>';
+}
+?>
+</select>
+<br/>
+<label> Services </label>
+<select id = "choix_service" name = "choix_service">
+<?php
+$cat = 'exemple_v';
+$services = getCatalogue('service', $cat);
+foreach ($services as $service){
+    echo '<option value="'.$service->id.'">'.$service->name.'</option>';
+}
+?>
+</select>
+<br/>
+<div class = "center">
+</br><input type = "submit" value = "Envoyer"><input type = "reset" value = "R&eacute;initialiser" ></br>
+</div>
+<input type = "hidden" name = "validate" id = "validate" value = "ok"/>
+</fieldset>
 </form>
 
 <?php

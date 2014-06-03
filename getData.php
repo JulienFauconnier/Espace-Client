@@ -1,9 +1,35 @@
 <?php
 
 //
+// Obtenir les Categories
+//
+function getCategories(){
+$request = array(
+	'method' => 'SmartTags.getList',
+	'params' => array(
+		/*
+		'pagination'	=> array (
+			'nbperpage'		=> {{nbperpage}},
+			'pagenum'		=> {{pagenum}}
+		),
+		*/
+		'search'		=> array (
+			'category'		=> 'catalogue',
+			//'inPos'			=> {{inPos}},
+			'contains'		=> '_v'
+		)
+	)
+);
+
+$resultat = sellsyConnect::load()->requestApi($request);
+$ret = $resultat->response->result;
+return $ret;
+}
+
+//
 // Obtenir le Catalogue
 //
-function getCatalogue($type){
+function getCatalogue($type, $cat){
 $request =  array(
 	'method' => 'Catalogue.getList',
 	'params' => array(
@@ -14,7 +40,7 @@ $request =  array(
 		),
 		*/
 		'search' => array(
-			'tags' 			=> 'visible'
+			'tags' 			=> $cat
 		)
 	)
 );
