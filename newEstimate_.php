@@ -3,46 +3,44 @@
 <html>
 <head>
 <title>Estimation</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script>
-$(document).ready(function() {
-    var $choix_categorie = $('#choix_categorie');
-    var $choix_select = $('#choix_select');
-     
-    // chargement des catégories
-    $.ajax({
-        url: 'getMore.php',
-        data: 'go', // on envoie $_GET['go']
-        dataType: 'json', // on veut un retour JSON
-        success: function(json){
-            $.each(json, function(index, value){ // pour chaque noeud JSON
-                // on ajoute l option dans la liste
-                $choix_categorie.append('<option value="'+ index +'">'+ value +'</option>');
-            });
+<script type="text/javascript" src="oXHR.js"></script>
+<script type="text/javascript">
+<!-- 
+
+function request(oSelect) {
+    var xhr   = getXMLHttpRequest();
+    var value = oSelect.options[oSelect.selectedIndex].value;
+    
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+            readData(xhr.responseXML);
+            document.getElementById("loader").style.display = "none";
+        } else if (xhr.readyState < 4) {
+            document.getElementById("loader").style.display = "inline";
         }
-    });
- 
-    // à la sélection d une catégorie dans la liste
-    $choix_categorie.on('change', function() {
-    	var val1 = choix_type;
-        var val2 = $(this).val(); // on récupère la valeur de la catégorie
- 
-        if (val != ''){
-            $choix_select.empty(); // on vide la liste des "produits"
-             
-            $.ajax({
-                url: 'getMore.php',
-                data: 'id_type='+ val1'&id_categorie='+ val2, // on envoie $_GET['id_categorie']
-                dataType: 'json',
-                success: function(json){
-                    $.each(json, function(index, value){
-                        $choix_select.append('<option value="'+ index +'">'+ value +'</option>');
-                    });
-                }
-            });
-        }
-    });
-});
+    };
+    
+    xhr.open("POST", "getMore.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("categorie=" + value);
+}
+
+function readData(oData) {
+    var nodes   = oData.getElementsByTagName("item");
+    var oSelect = document.getElementById("choix_select");
+    var oOption, oInner;
+    
+    oSelect.innerHTML = "";
+    for (var i=0, c=nodes.length; i<c; i++) {
+        oOption = document.createElement("option");
+        oInner  = document.createTextNode(nodes[i].getAttribute("name"));
+        oOption.value = nodes[i].getAttribute("id");
+        
+        oOption.appendChild(oInner);
+        oSelect.appendChild(oOption);
+    }
+}
+//-->
 </script>
 </head>
 <body>
@@ -51,7 +49,6 @@ $(document).ready(function() {
 include("initAPI.php");
 include("getData.php");
 include("setData.php");
-//include("getMore.php");
 
 // Insérer ici la vérification de la connexion
 
@@ -75,10 +72,18 @@ if($_POST['validate'] != 'ok')
 </select>
 
 <label> Categorie: </label>
-<select id = "choix_categorie" name = "choix_categorie"></select>
+<select id = "choix_categorie" name = "choix_categorie" onchange="request(this.value);">
+<option value="none">Selection</option>
+<?php
+$categories = getCategories();
+foreach ($categories as $categorie){
+    echo '<option value="'.$categorie->word.'">'.rtrim($categorie->word, '_v').'</option>';
+}
+?>
+</select>
 
 <label> Produit: </label>
-<select id = "choix_select" name = "choix_select"></select>
+<select id = "choix_select"></select>
 
 <label for="intNumber">Quantite:</label>
 <input id="intNumber" type="number" min="1" max="10" />

@@ -1,27 +1,22 @@
 <?php
-if(isset($_GET['go']) || (isset($_GET['id_type']) && (isset($_GET['id_categorie'])) {
- 
-    $json = array();
-     
-    if(isset($_GET['go'])){
-        $categories = getCategories();
-			foreach ($categories as $categorie){
-                $json['id'][] = $categorie->id;
-                $json['name'][] = $categorie->name;
-			}
-		}
-    else if(isset($_GET['id_type']) && isset($_GET['id_categorie'])){
-        $type = htmlentities(intval($_GET['id_type']));
-        $cat = htmlentities(intval($_GET['id_categorie']));
 
-        $services = getCatalogue($type, $cat);
-			foreach ($catalogue as $select){
-                $json['id'][] = $select->id;
-                $json['name'][] = $select->name;
-            }
-		}
+include("initAPI.php");
+include("getData.php");
+include("setData.php");
 
-    // envoi du résultat au success
-    echo json_encode($json);
+header("Content-Type: text/xml");
+echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
+echo "<list>";
+
+$cat = (isset($_POST["categorie"])) ? htmlentities($_POST["categorie"]) : NULL;
+
+if ($cat) {
+    $services = getCatalogue('item', $cat);
+    foreach ($catalogue as $select){
+        echo "<item id=\"" . $select->id . "\" name=\"" . $select->name . "\" />";
+    }
 }
+
+echo "</list>";
+
 ?>

@@ -17,7 +17,7 @@ if($_POST['validate'] != 'ok')
             
 <form name = "ajout" id = "ajout" method = "post" action = "newEstimate.php">
 <fieldset>
-<label> Categories </label>
+<label> Cat&eacute;gorie: </label>
 <select id = "choix_categorie" name = "choix_categorie">
 <?php
 $categories = getCategories();
@@ -27,7 +27,7 @@ foreach ($categories as $categorie){
 ?>
 </select>
 <br/>
-<label> Articles </label>
+<label> Article: </label>
 <select id = "choix_article" name = "choix_article">
 <?php
 $cat = 'test_v';
@@ -38,7 +38,7 @@ foreach ($articles as $article){
 ?>
 </select>
 <br/>
-<label> Services </label>
+<label> Service: </label>
 <select id = "choix_service" name = "choix_service">
 <?php
 $cat = 'exemple_v';
@@ -65,7 +65,7 @@ else
 $row[0] = processObject('item', $_POST['choix_article'], 1);
 $row[1] = processObject('service', $_POST['choix_service'], 1);
 
-setEstimate($row);
+//setEstimate($row);
 
 }
 
