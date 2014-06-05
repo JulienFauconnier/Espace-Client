@@ -1,3 +1,13 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<meta charset="UTF-8">
+<html>
+<head>
+<title>estimation</title>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="js/dropdown.min.js"></script>
+</head>
+<body>
 <?php
 
 include("initAPI.php");
@@ -14,45 +24,42 @@ if($_POST['validate'] != 'ok')
 ?>
 
 <h2>Estimation</h2>
-            
+
 <form name = "ajout" id = "ajout" method = "post" action = "newEstimate.php">
 <fieldset>
-<label> Cat&eacute;gorie: </label>
-<select id = "choix_categorie" name = "choix_categorie">
-<?php
-$categories = getCategories();
-foreach ($categories as $categorie){
-    echo '<option value="'.$categorie->word.'">'.rtrim($categorie->word, '_v').'</option>';
-}
-?>
+
+<label> Type: </label>
+<select id = "choix_type" name = "choix_type">
+    <option value="none">Sélection</option>
+    <option value="item">Article</option>
+    <option value="service">Service</option>
 </select>
-<br/>
-<label> Article: </label>
-<select id = "choix_article" name = "choix_article">
-<?php
-$cat = 'test_v';
-$articles = getCatalogue('item', $cat);
-foreach ($articles as $article){
-    echo '<option value="'.$article->id.'">'.$article->name.'</option>';
-}
-?>
+<span id="resultat1"></span>
+
+<label> Catégorie: </label>
+<select id = "choix_cat" name = "choix_cat">
+    <option value="none">Sélection</option>
 </select>
-<br/>
-<label> Service: </label>
-<select id = "choix_service" name = "choix_service">
-<?php
-$cat = 'exemple_v';
-$services = getCatalogue('service', $cat);
-foreach ($services as $service){
-    echo '<option value="'.$service->id.'">'.$service->name.'</option>';
-}
-?>
+
+<label> Produit: </label>
+<select id = "choix_select" name = "choix_select">
+    <option value="none">Sélection</option>
 </select>
-<br/>
-<div class = "center">
-</br><input type = "submit" value = "Envoyer"><input type = "reset" value = "R&eacute;initialiser" ></br>
+
+<label for="choix_qt">Quantité:</label>
+<input id="choix_qt" type="number" value = "1" min="1" max="10" />
+
+<!--
+<a href="" onclick="gestionClic(); return false;">Ajouter</a>
+
+<div id="resultat">&nbsp;</div>
+-->
+
+<div class="center">
+</br><input type="submit" value="Envoyer"><input type="reset" value="Réinitialiser" ></br>
 </div>
-<input type = "hidden" name = "validate" id = "validate" value = "ok"/>
+<input type="hidden" name="validate" id="validate" value="ok"/>
+
 </fieldset>
 </form>
 
@@ -62,11 +69,14 @@ foreach ($services as $service){
 else
 {
 
-$row[0] = processObject('item', $_POST['choix_article'], 1);
-$row[1] = processObject('service', $_POST['choix_service'], 1);
+//$row[0] = processObject($_POST['choix_type'], $_POST['choix_select'], 1);
+//$row[1] = processObject($_POST['choix_type'], $_POST['choix_select'], 1);
 
 //setEstimate($row);
 
 }
 
 ?>
+
+</body>
+</html>

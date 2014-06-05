@@ -1,0 +1,502 @@
+{
+  "class/sellsyconnect.php": {
+    "size": 7389,
+    "date": "2014-06-05T19:33:07.880Z"
+  },
+  "class/sellsytools.php": {
+    "size": 2098,
+    "date": "2014-06-05T19:33:08.801Z"
+  },
+  "config/.htaccess": {
+    "size": 15,
+    "date": "2014-06-05T19:33:09.577Z"
+  },
+  "config/chmod.php": {
+    "size": 114,
+    "date": "2014-06-05T19:33:10.523Z"
+  },
+  "config/connect.php": {
+    "size": 237,
+    "date": "2014-06-05T19:33:11.534Z"
+  },
+  "config/ecran_securite.php": {
+    "size": 9788,
+    "date": "2014-06-05T19:33:12.585Z"
+  },
+  "config/remove.txt": {
+    "size": 86,
+    "date": "2014-06-05T19:33:13.294Z"
+  },
+  "getData.php": {
+    "size": 1798,
+    "date": "2014-06-05T19:33:15.680Z"
+  },
+  "htaccess.txt": {
+    "size": 4804,
+    "date": "2014-06-05T19:33:17.158Z"
+  },
+  "IMG/distant/csl/principalxml369a.csl": {
+    "size": 2822828,
+    "date": "2014-06-05T19:34:30.297Z"
+  },
+  "IMG/distant/csl/principalxml369a.csl.md5.txt": {
+    "size": 1739343,
+    "date": "2014-06-05T19:35:15.454Z"
+  },
+  "IMG/remove.txt": {
+    "size": 83,
+    "date": "2014-06-05T19:35:16.477Z"
+  },
+  "initAPI.php": {
+    "size": 420,
+    "date": "2014-06-05T19:35:17.443Z"
+  },
+  "newClient.php": {
+    "size": 2269,
+    "date": "2014-06-05T19:35:18.384Z"
+  },
+  "newEstimate.php": {
+    "size": 1858,
+    "date": "2014-06-05T21:41:33.346Z"
+  },
+  "newEstimate_.php": {
+    "size": 1855,
+    "date": "2014-06-05T21:41:34.357Z"
+  },
+  "README.text": {
+    "size": 3118,
+    "date": "2014-06-05T19:35:20.847Z"
+  },
+  "setData.php": {
+    "size": 781,
+    "date": "2014-06-05T19:35:21.636Z"
+  },
+  "sftp-config.json": {
+    "size": 1310,
+    "date": "2014-06-05T19:35:22.388Z"
+  },
+  "spip_loader.php": {
+    "size": 22415,
+    "date": "2014-06-05T19:35:23.782Z"
+  },
+  "squelettes/article.html": {
+    "size": 954,
+    "date": "2014-06-05T19:35:24.962Z"
+  },
+  "squelettes/auteur.html": {
+    "size": 5,
+    "date": "2014-06-05T19:35:25.705Z"
+  },
+  "squelettes/backend.html": {
+    "size": 5,
+    "date": "2014-06-05T19:35:26.569Z"
+  },
+  "squelettes/identification_site.html": {
+    "size": 314,
+    "date": "2014-06-05T19:35:27.371Z"
+  },
+  "squelettes/inscription.html": {
+    "size": 95,
+    "date": "2014-06-05T19:35:28.093Z"
+  },
+  "squelettes/mot.html": {
+    "size": 5,
+    "date": "2014-06-05T19:35:29.052Z"
+  },
+  "squelettes/rubrique.html": {
+    "size": 5,
+    "date": "2014-06-05T19:35:29.832Z"
+  },
+  "squelettes/sommaire.html": {
+    "size": 7187,
+    "date": "2014-06-05T19:35:30.846Z"
+  },
+  "squelettes-dist/404.html": {
+    "size": 2892,
+    "date": "2014-06-05T19:35:32.307Z"
+  },
+  "squelettes-dist/article.html": {
+    "size": 4312,
+    "date": "2014-06-05T19:35:34.500Z"
+  },
+  "squelettes-dist/auteur.html": {
+    "size": 3595,
+    "date": "2014-06-05T19:35:35.291Z"
+  },
+  "squelettes-dist/backend-breves.html": {
+    "size": 2945,
+    "date": "2014-06-05T19:35:37.050Z"
+  },
+  "squelettes-dist/backend.html": {
+    "size": 1309,
+    "date": "2014-06-05T19:35:38.157Z"
+  },
+  "squelettes-dist/breve.html": {
+    "size": 3915,
+    "date": "2014-06-05T19:35:39.140Z"
+  },
+  "squelettes-dist/calendrier.html": {
+    "size": 1753,
+    "date": "2014-06-05T19:35:40.209Z"
+  },
+  "squelettes-dist/contact.html": {
+    "size": 2225,
+    "date": "2014-06-05T19:35:41.067Z"
+  },
+  "squelettes-dist/css/clear.css": {
+    "size": 1657,
+    "date": "2014-06-05T19:35:41.848Z"
+  },
+  "squelettes-dist/css/form.css": {
+    "size": 1770,
+    "date": "2014-06-05T19:35:42.592Z"
+  },
+  "squelettes-dist/css/img/background.png": {
+    "size": 3935,
+    "date": "2014-06-05T19:35:43.410Z"
+  },
+  "squelettes-dist/css/img/def.png": {
+    "size": 306,
+    "date": "2014-06-05T19:35:44.158Z"
+  },
+  "squelettes-dist/css/img/quote.png": {
+    "size": 621,
+    "date": "2014-06-05T19:35:44.942Z"
+  },
+  "squelettes-dist/css/img/recherche.png": {
+    "size": 771,
+    "date": "2014-06-05T19:35:45.697Z"
+  },
+  "squelettes-dist/css/layout.css": {
+    "size": 2946,
+    "date": "2014-06-05T19:35:46.595Z"
+  },
+  "squelettes-dist/css/reset.css": {
+    "size": 1347,
+    "date": "2014-06-05T19:35:47.503Z"
+  },
+  "squelettes-dist/css/spip.css": {
+    "size": 4209,
+    "date": "2014-06-05T19:35:48.296Z"
+  },
+  "squelettes-dist/css/style.css": {
+    "size": 6238,
+    "date": "2014-06-05T19:35:49.204Z"
+  },
+  "squelettes-dist/css/typo.css": {
+    "size": 5378,
+    "date": "2014-06-05T19:35:50.060Z"
+  },
+  "squelettes-dist/distrib.html": {
+    "size": 513,
+    "date": "2014-06-05T19:35:50.823Z"
+  },
+  "squelettes-dist/favicon.ico.html": {
+    "size": 99,
+    "date": "2014-06-05T19:35:51.544Z"
+  },
+  "squelettes-dist/formulaires/administration.html": {
+    "size": 837,
+    "date": "2014-06-05T19:35:52.403Z"
+  },
+  "squelettes-dist/formulaires/ecrire_auteur.html": {
+    "size": 3027,
+    "date": "2014-06-05T19:35:54.127Z"
+  },
+  "squelettes-dist/formulaires/ecrire_auteur.php": {
+    "size": 3292,
+    "date": "2014-06-05T19:35:54.881Z"
+  },
+  "squelettes-dist/formulaires/inc-inscription-explication.html": {
+    "size": 290,
+    "date": "2014-06-05T19:35:56.550Z"
+  },
+  "squelettes-dist/formulaires/inscription.html": {
+    "size": 2626,
+    "date": "2014-06-05T19:35:57.412Z"
+  },
+  "squelettes-dist/formulaires/inscription.php": {
+    "size": 3918,
+    "date": "2014-06-05T19:35:58.274Z"
+  },
+  "squelettes-dist/formulaires/mot_de_passe.html": {
+    "size": 1634,
+    "date": "2014-06-05T19:35:59.138Z"
+  },
+  "squelettes-dist/formulaires/mot_de_passe.php": {
+    "size": 4172,
+    "date": "2014-06-05T19:36:00.006Z"
+  },
+  "squelettes-dist/formulaires/oubli.html": {
+    "size": 1324,
+    "date": "2014-06-05T19:36:00.775Z"
+  },
+  "squelettes-dist/formulaires/oubli.php": {
+    "size": 3109,
+    "date": "2014-06-05T19:36:02.267Z"
+  },
+  "squelettes-dist/formulaires/recherche.html": {
+    "size": 602,
+    "date": "2014-06-05T19:36:03.041Z"
+  },
+  "squelettes-dist/formulaires/recherche.php": {
+    "size": 1718,
+    "date": "2014-06-05T19:36:03.892Z"
+  },
+  "squelettes-dist/forum.html": {
+    "size": 3267,
+    "date": "2014-06-05T19:36:04.704Z"
+  },
+  "squelettes-dist/ical.html": {
+    "size": 1040,
+    "date": "2014-06-05T19:36:08.542Z"
+  },
+  "squelettes-dist/icon/skel.png": {
+    "size": 38318,
+    "date": "2014-06-05T19:36:10.762Z"
+  },
+  "squelettes-dist/identifiants.html": {
+    "size": 1559,
+    "date": "2014-06-05T19:36:11.566Z"
+  },
+  "squelettes-dist/img/feed.png": {
+    "size": 725,
+    "date": "2014-06-05T19:36:12.415Z"
+  },
+  "squelettes-dist/inc-rss-item.html": {
+    "size": 2374,
+    "date": "2014-06-05T19:36:13.170Z"
+  },
+  "squelettes-dist/inclure/documents.html": {
+    "size": 2383,
+    "date": "2014-06-05T19:36:14.058Z"
+  },
+  "squelettes-dist/inclure/footer.html": {
+    "size": 953,
+    "date": "2014-06-05T19:36:14.865Z"
+  },
+  "squelettes-dist/inclure/forum.html": {
+    "size": 3737,
+    "date": "2014-06-05T19:36:15.640Z"
+  },
+  "squelettes-dist/inclure/head.html": {
+    "size": 2153,
+    "date": "2014-06-05T19:36:16.500Z"
+  },
+  "squelettes-dist/inclure/header.html": {
+    "size": 362,
+    "date": "2014-06-05T19:36:17.336Z"
+  },
+  "squelettes-dist/inclure/nav.html": {
+    "size": 252,
+    "date": "2014-06-05T19:36:18.126Z"
+  },
+  "squelettes-dist/inclure/navsub.html": {
+    "size": 931,
+    "date": "2014-06-05T19:36:19.707Z"
+  },
+  "squelettes-dist/inclure/petition.html": {
+    "size": 2491,
+    "date": "2014-06-05T19:36:20.538Z"
+  },
+  "squelettes-dist/inclure/recents.html": {
+    "size": 766,
+    "date": "2014-06-05T19:36:21.271Z"
+  },
+  "squelettes-dist/inclure/rubriques.html": {
+    "size": 895,
+    "date": "2014-06-05T19:36:22.003Z"
+  },
+  "squelettes-dist/lang/paquet-dist.xml": {
+    "size": 3856,
+    "date": "2014-06-05T19:36:22.873Z"
+  },
+  "squelettes-dist/lang/paquet-dist_ar.php": {
+    "size": 492,
+    "date": "2014-06-05T19:36:23.596Z"
+  },
+  "squelettes-dist/lang/paquet-dist_de.php": {
+    "size": 431,
+    "date": "2014-06-05T19:36:24.379Z"
+  },
+  "squelettes-dist/lang/paquet-dist_en.php": {
+    "size": 434,
+    "date": "2014-06-05T19:36:25.128Z"
+  },
+  "squelettes-dist/lang/paquet-dist_eo.php": {
+    "size": 433,
+    "date": "2014-06-05T19:36:25.875Z"
+  },
+  "squelettes-dist/lang/paquet-dist_es.php": {
+    "size": 456,
+    "date": "2014-06-05T19:36:26.683Z"
+  },
+  "squelettes-dist/lang/paquet-dist_fa.php": {
+    "size": 501,
+    "date": "2014-06-05T19:36:27.552Z"
+  },
+  "squelettes-dist/lang/paquet-dist_fr.php": {
+    "size": 405,
+    "date": "2014-06-05T19:36:28.380Z"
+  },
+  "squelettes-dist/lang/paquet-dist_fr_fem.php": {
+    "size": 450,
+    "date": "2014-06-05T19:36:29.201Z"
+  },
+  "squelettes-dist/lang/paquet-dist_it.php": {
+    "size": 445,
+    "date": "2014-06-05T19:36:33.129Z"
+  },
+  "squelettes-dist/lang/paquet-dist_lb.php": {
+    "size": 452,
+    "date": "2014-06-05T19:36:33.954Z"
+  },
+  "squelettes-dist/lang/paquet-dist_nl.php": {
+    "size": 429,
+    "date": "2014-06-05T19:36:36.084Z"
+  },
+  "squelettes-dist/lang/paquet-dist_pt.php": {
+    "size": 436,
+    "date": "2014-06-05T19:36:37.364Z"
+  },
+  "squelettes-dist/lang/paquet-dist_pt_br.php": {
+    "size": 451,
+    "date": "2014-06-05T19:36:38.126Z"
+  },
+  "squelettes-dist/lang/paquet-dist_ru.php": {
+    "size": 455,
+    "date": "2014-06-05T19:36:39.356Z"
+  },
+  "squelettes-dist/lang/paquet-dist_sk.php": {
+    "size": 443,
+    "date": "2014-06-05T19:36:40.099Z"
+  },
+  "squelettes-dist/modeles/article_mots.html": {
+    "size": 515,
+    "date": "2014-06-05T19:36:42.578Z"
+  },
+  "squelettes-dist/modeles/article_traductions.html": {
+    "size": 790,
+    "date": "2014-06-05T19:36:43.421Z"
+  },
+  "squelettes-dist/modeles/favicon.html": {
+    "size": 135,
+    "date": "2014-06-05T19:36:44.173Z"
+  },
+  "squelettes-dist/modeles/foreach.html": {
+    "size": 39,
+    "date": "2014-06-05T19:36:45.150Z"
+  },
+  "squelettes-dist/modeles/lesauteurs.html": {
+    "size": 432,
+    "date": "2014-06-05T19:36:45.911Z"
+  },
+  "squelettes-dist/modeles/plan.html": {
+    "size": 1615,
+    "date": "2014-06-05T19:36:46.695Z"
+  },
+  "squelettes-dist/mot.html": {
+    "size": 5605,
+    "date": "2014-06-05T19:36:47.611Z"
+  },
+  "squelettes-dist/nouveautes.html": {
+    "size": 903,
+    "date": "2014-06-05T19:36:48.342Z"
+  },
+  "squelettes-dist/paquet.xml": {
+    "size": 333,
+    "date": "2014-06-05T19:36:49.603Z"
+  },
+  "squelettes-dist/plan.html": {
+    "size": 2159,
+    "date": "2014-06-05T19:36:50.374Z"
+  },
+  "squelettes-dist/polices/dustismo-license.txt": {
+    "size": 19825,
+    "date": "2014-06-05T19:36:52.313Z"
+  },
+  "squelettes-dist/polices/dustismo.ttf": {
+    "size": 52352,
+    "date": "2014-06-05T19:36:55.037Z"
+  },
+  "squelettes-dist/polices/dustismo_bold.ttf": {
+    "size": 53168,
+    "date": "2014-06-05T19:36:57.286Z"
+  },
+  "squelettes-dist/puce.gif": {
+    "size": 83,
+    "date": "2014-06-05T19:36:58.283Z"
+  },
+  "squelettes-dist/puce_rtl.gif": {
+    "size": 84,
+    "date": "2014-06-05T19:36:58.977Z"
+  },
+  "squelettes-dist/recherche.html": {
+    "size": 4797,
+    "date": "2014-06-05T19:36:59.970Z"
+  },
+  "squelettes-dist/robots.txt.html": {
+    "size": 419,
+    "date": "2014-06-05T19:37:00.715Z"
+  },
+  "squelettes-dist/rss_forum_article.html": {
+    "size": 1448,
+    "date": "2014-06-05T19:37:01.625Z"
+  },
+  "squelettes-dist/rss_forum_breve.html": {
+    "size": 1411,
+    "date": "2014-06-05T19:37:08.496Z"
+  },
+  "squelettes-dist/rss_forum_rubrique.html": {
+    "size": 1423,
+    "date": "2014-06-05T19:37:09.236Z"
+  },
+  "squelettes-dist/rss_forum_syndic.html": {
+    "size": 1415,
+    "date": "2014-06-05T19:37:10.064Z"
+  },
+  "squelettes-dist/rss_forum_thread.html": {
+    "size": 1440,
+    "date": "2014-06-05T19:37:10.866Z"
+  },
+  "squelettes-dist/rubrique.html": {
+    "size": 6346,
+    "date": "2014-06-05T19:37:11.829Z"
+  },
+  "squelettes-dist/site.html": {
+    "size": 4618,
+    "date": "2014-06-05T19:37:12.640Z"
+  },
+  "squelettes-dist/sitemap.xml.html": {
+    "size": 1379,
+    "date": "2014-06-05T19:37:13.456Z"
+  },
+  "squelettes-dist/sommaire.html": {
+    "size": 3250,
+    "date": "2014-06-05T19:37:14.319Z"
+  },
+  "squelettes-dist/spip.ico": {
+    "size": 1406,
+    "date": "2014-06-05T19:37:15.142Z"
+  },
+  "squelettes-dist/win_width.htc": {
+    "size": 493,
+    "date": "2014-06-05T19:37:15.845Z"
+  },
+  "js/dropdown.js": {
+    "size": 1774,
+    "date": "2014-06-05T21:41:30.944Z"
+  },
+  "js/dropdown.min.js": {
+    "size": 680,
+    "date": "2014-06-05T21:41:32.248Z"
+  },
+  "getCategories.php": {
+    "size": 465,
+    "date": "2014-06-05T21:41:27.805Z"
+  },
+  "process.php": {
+    "size": 142,
+    "date": "2014-06-05T21:41:29.902Z"
+  }
+}
