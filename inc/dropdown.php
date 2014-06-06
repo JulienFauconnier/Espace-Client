@@ -1,3 +1,4 @@
+<script type="text/javascript">
 $(function() {
     var c_type = $("#choix_type").val();
     var c_cat = $("#choix_cat").val();
@@ -8,30 +9,31 @@ $(function() {
     $('#choix_type').change(function() {
         c_type = $(this).val();
         if (c_type != 'none') {
-            tmp1 = 'getCategories.php';
-            console.log(tmp1)
-
             var $sel1 = $('#choix_cat');
+            
+            for (var i = 0; i < 5; i++) {
+                $sel1.append('<option id="' + i + '">' + i+1 + '</option>');
+            }
 
-            $.getJSON(tmp1, function(data) {
+            /*
+            $.getJSON('<?php echo getCategories(); ?>', function(data) {
                 $sel1.html('');
-                $.each(data.tmp1, function(key, value) {
-                    $sel1.append('<option id="' + value.word + '">' + value.word + '</option>');
+                $.each(key, function(key, value) {
+                    $sel1.append('<option id="' + value->word + '">' + value->word + '</option>');
                 })
             });
+*/
         }
     });
 
     $('#choix_cat').change(function() {
         c_cat = $(this).val();
         if (c_cat != 'none' && c_type != 'none') {
-            tmp2 = '<?php echo getCatalogue(c_type, c_cat); ?>';
-            console.log(tmp2)
             var $sel2 = $('#choix_select');
 
-            $.getJSON(tmp2, function(data) {
+            $.getJSON('<?php echo getCatalogue(c_type, c_cat); ?>', function(data) {
                 $sel2.html('');
-                $.each(data.tmp2, function(key, val) {
+                $.each(key, function(key, value) {
                     $sel2.append('<option id="' + value.id + '">' + value.name + '</option>');
                 })
             });
@@ -43,3 +45,4 @@ $(function() {
     });
 
 });
+</script>

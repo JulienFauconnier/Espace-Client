@@ -23,7 +23,7 @@ $request = array(
 
 $resultat = sellsyConnect::load()->requestApi($request);
 $ret = $resultat->response->result;
-return $ret;
+return json_encode($ret);
 }
 
 //
@@ -47,7 +47,7 @@ $request =  array(
 
 $resultat = sellsyConnect::load()->requestApi($request);
 $ret = $resultat->response->result;
-return $ret;
+return json_encode($ret);
 }
 
 //
