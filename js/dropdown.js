@@ -5,31 +5,15 @@ $(function() {
     var tmp1;
     var tmp2;
 
-    /*
     $('#choix_type').change(function() {
         c_type = $(this).val();
         if (c_type != 'none') {
-            tmp1 = '<?php echo getCategories(); ?>';
+            tmp1 = 'getCategories.php';
             console.log(tmp1)
 
             var $sel1 = $('#choix_cat');
 
             $.getJSON(tmp1, function(data) {
-                $sel1.html('');
-                $.each(data.tmp1, function(key, value) {
-                    $sel1.append('<option id="' + value.word + '">' + value.word + '</option>');
-                })
-            });
-        }
-    });
-    */
-
-    $('#choix_type').change(function() {
-        c_type = $(this).val();
-        if (c_type != 'none') {
-            var $sel1 = $('#choix_cat');
-
-            $.getJSON("getCategories.php",formContent, function(json){ 
                 $sel1.html('');
                 $.each(data.tmp1, function(key, value) {
                     $sel1.append('<option id="' + value.word + '">' + value.word + '</option>');

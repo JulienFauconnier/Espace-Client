@@ -5,14 +5,14 @@
 <head>
 <title>estimation</title>
 <script src="//code.jquery.com/jquery.min.js"></script>
-<script src="js/dropdown.min.js"></script>
+<script src="../js/dropdown.min.js"></script>
 </head>
 <body>
 <?php
 
-include("initAPI.php");
-include("getData.php");
-include("setData.php");
+include("../class/initAPI.php");
+include("Catalogue.php");
+include("Documents.php");
 
 // Insérer ici la vérification de la connexion
 

@@ -5,14 +5,14 @@
 <head>
 <title>estimation</title>
 <script src="//code.jquery.com/jquery.min.js"></script>
-<script src="js/dropdown.js"></script>
+<script src="../js/dropdown.js"></script>
 </head>
 <body>
 <?php
 
-include("initAPI.php");
-include("getData.php");
-include("setData.php");
+include("../class/initAPI.php");
+include("Catalogue.php");
+include("Documents.php");
 
 // Insérer ici la vérification de la connexion
 
@@ -34,7 +34,6 @@ if($_POST['validate'] != 'ok')
     <option value="item">Article</option>
     <option value="service">Service</option>
 </select>
-<span id="resultat1"></span>
 
 <label> Catégorie: </label>
 <select id = "choix_cat" name = "choix_cat">
@@ -54,6 +53,8 @@ if($_POST['validate'] != 'ok')
 
 <div id="resultat">&nbsp;</div>
 -->
+
+<div id="result"></div>
 
 <div class="center">
 </br><input type="submit" value="Envoyer"><input type="reset" value="Réinitialiser" ></br>

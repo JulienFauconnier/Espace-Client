@@ -5,8 +5,8 @@
 //
 function getCategories(){
 $request = array(
-	'method' => 'SmartTags.getList',
-	'params' => array(
+	'method'	=> 'SmartTags.getList',
+	'params'	=> array(
 		/*
 		'pagination'	=> array (
 			'nbperpage'		=> {{nbperpage}},
@@ -31,15 +31,15 @@ return $ret;
 //
 function getCatalogue($type, $cat){
 $request =  array(
-	'method' => 'Catalogue.getList',
-	'params' => array(
+	'method'	=> 'Catalogue.getList',
+	'params'	=> array(
 		'type'	=> $type,
 		/*
 		'pagination' => array(
 			'pagenum'	=> {{pagenum}},
 		),
 		*/
-		'search' => array(
+		'search'	=> array(
 			'tags' 			=> $cat
 		)
 	)
@@ -55,8 +55,8 @@ return $ret;
 //
 function processObject($type, $id, $qt){
 $request =  array( 
-	'method' => 'Catalogue.getOne', 
-	'params' => array ( 
+	'method'	=> 'Catalogue.getOne', 
+	'params'	=> array ( 
 		'type' 		=> $type,
 		'id' 		=> $id,
 	)

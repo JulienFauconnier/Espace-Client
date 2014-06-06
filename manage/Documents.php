@@ -7,9 +7,9 @@ function setEstimate($row){
 
 // Début
 $request = array(
-	'method' => 'Document.create',
-	'params' => array(
-		'document' 	=> array(
+	'method'	=> 'Document.create',
+	'params'	=> array(
+		'document'	=> array(
 			'doctype'				=> 'estimate',
 			//'parentId'				=> {{parentId}},
 			'thirdid'				=> '1470593',
