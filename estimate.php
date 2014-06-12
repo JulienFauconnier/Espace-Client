@@ -10,8 +10,7 @@ include("catalogue.php");
 include("documents.php");
 ?>
 
-<!--<script src="//code.jquery.com/jquery.js"></script>-->
-<script src="../inc/jquery-2.1.1.js"></script>
+<script src="//code.jquery.com/jquery.min.js"></script>
 
 <?php
 include("../inc/dropdown.php");
@@ -33,7 +32,7 @@ if($_POST['validate'] != 'ok')
 
 <h2>Estimation</h2>
 
-<form name = "ajout" id = "ajout" method = "post" action = "estimate_.php">
+<form name = "ajout" id = "ajout" method = "post" action = "estimate.php">
 <fieldset>
 
 <label> Type: </label>
@@ -63,7 +62,7 @@ if($_POST['validate'] != 'ok')
 -->
 
 <div class="center">
-<br><input type="submit" value="Envoyer"><input type="reset" value="Réinitialiser" ><br>
+</br><input type="submit" value="Envoyer"><input type="reset" value="Réinitialiser" ></br>
 </div>
 <input type="hidden" name="validate" id="validate" value="ok"/>
 
