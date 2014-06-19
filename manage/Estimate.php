@@ -2,87 +2,85 @@
 <meta charset="UTF-8">
 <html>
 <head>
-<title>estimation</title>
+	<title>Estimation</title>
 
-<?php
-include("../inc/initAPI.php");
-include("catalogue.php");
-include("documents.php");
-?>
+	<!-- Insérer ici la vérification de la connexion -->
 
-<script src="//code.jquery.com/jquery.min.js"></script>
+	<?php
+	include("../inc/initAPI.php");
+	?>
 
-<?php
-include("../inc/dropdown.php");
-?>
+	<!-- Insérer ici la vérification de l'existence du client sur Sellsy -->
+
+	<script src="//code.jquery.com/jquery.js"></script>
+
+	<?php
+	include("../inc/dropdown.php");
+	?>
 
 </head>
 <body>
 
-<?php
+	<?php
+	
+	if($_POST['validate'] != 'ok')
+	{
 
-// Insérer ici la vérification de la connexion
+		?>
 
-// Insérer ici la vérification de l'existence du client sur Sellsy
- 
-if($_POST['validate'] != 'ok')
-{
+		<h2>Estimation</h2>
 
-?>
+		<form name = "ajout" id = "ajout" method = "post" action = "estimate.php">
+			<fieldset>
 
-<h2>Estimation</h2>
+				<label> Type: </label>
+				<select id = "choix_type" name = "choix_type">
+					<option id="none">Sélection</option>
+					<option id="item">Article</option>
+					<option id="service">Service</option>
+				</select>
 
-<form name = "ajout" id = "ajout" method = "post" action = "estimate.php">
-<fieldset>
+				<label> Catégorie: </label>
+				<select id = "choix_cat" name = "choix_cat">
+				</select>
 
-<label> Type: </label>
-<select id = "choix_type" name = "choix_type">
-    <option value="none">Sélection</option>
-    <option value="item">Article</option>
-    <option value="service">Service</option>
-</select>
+				<label> Produit: </label>
+				<select id = "choix_id" name = "choix_id">
+				</select>
 
-<label> Catégorie: </label>
-<select id = "choix_cat" name = "choix_cat">
-    <option value="none">Sélection</option>
-</select>
+				<label for="choix_qt">Quantité:</label>
+				<input id="choix_qt" type="number" value = "1" min="1" max="10" />
 
-<label> Produit: </label>
-<select id = "choix_select" name = "choix_select">
-    <option value="none">Sélection</option>
-</select>
+				<div id="addb">Ajouter</div>
+			</fieldset>
 
-<label for="choix_qt">Quantité:</label>
-<input id="choix_qt" type="number" value = "1" min="1" max="10" />
+			<br>
 
-<!--
-<a href="" onclick="gestionClic(); return false;">Ajouter</a>
+			<fieldset>
+				<span id="resultat">&nbsp;</span>
+			</fieldset>
 
-<div id="resultat">&nbsp;</div>
--->
+			<div class="center">
+				<br><input id = "send" type="submit" value="Envoyer"><input type="reset" value="Réinitialiser" ><br>
+			</div>
+			<input type="hidden" name="validate" id="validate" value="ok"/>
 
-<div class="center">
-</br><input type="submit" value="Envoyer"><input type="reset" value="Réinitialiser" ></br>
-</div>
-<input type="hidden" name="validate" id="validate" value="ok"/>
+		</form>
 
-</fieldset>
-</form>
+		<?php
 
-<?php
-
-}
-else
-{
+	}
+	else
+	{
 
 //$row[0] = processObject($_POST['choix_type'], $_POST['choix_select'], 1);
 //$row[1] = processObject($_POST['choix_type'], $_POST['choix_select'], 1);
 
 //setEstimate($row);
 
-}
+	}
 
-?>
+	?>
 
 </body>
 </html>

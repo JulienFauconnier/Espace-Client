@@ -1,64 +1,84 @@
 <script>
-$(function() {
-    var c_type = $("#choix_type").val();
-    var c_cat = $("#choix_cat").val();
-    var c_qt = $("#choix_qt").val();
-    var tmp1;
-    var tmp2;
+    $(function () {
+        var c_type;
+        var c_cat;
 
-    $('#choix_type').change(function() {
-        c_type = $(this).val();
+        var c_id = $("#choix_id").val();;
+        var c_qt = $("#choix_qt").val();;
+
         var $sel1 = $('#choix_cat');
-        $sel1.html('');
-        $sel1.append('<option id="none">Sélection</option>');
-        if (c_type != 'none') {
-            var lcat = jQuery.parseJSON('<?php echo getCategories(); ?>');
-            $.each(lcat, function(){
-                $sel1.append('<option id="' + this.word + '">' + this.word.substring(0,this.word.length-2) + '</option>');
-            });
-        }
-    });
+        var $sel2 = $('#choix_id');
 
-    $('#choix_cat').change(function() {
-        c_cat = $(this).val();
-        var $sel2 = $('#choix_select');
-        $sel2.html('');
-        $sel2.append('<option id="none">Sélection</option>');
-        if (c_cat != 'none') {
-            var lchx = jQuery.parseJSON('<?php echo getCatalogue("item", "test_v"); ?>');
-            $.each(lchx, function(){
-                $sel2.append('<option id="' + this.id + '">' + this.name + '</option>');
-            });
-        }
-    });
+        var doc = [];
 
-    /*
-    $('#choix_cat').change(function() {
-        c_cat = $(this).val();
-        var $sel2 = $('#choix_select');
-        $sel2.html('');
-        $sel2.append('<option id="none">Sélection</option>');
-        if (c_cat != 'none') {
-            $.ajax
-            ({
-                type: "POST",
-                url: "product.php",
-                data: {
-                    'c_type'    : c_type
-                    'c_cat'     : c_cat
-                },
-                cache: false,
-                success: function(html)
-                {
-                    $(".choix_select").html(html);
-                } 
-            });
+        function rezer(opt1, opt2) {
+            if (opt1 == 1) {
+                c_type = $("#choix_type option:selected").attr("id");
+                $sel1.html('');
+                $sel1.append('<option id="none">Sélection</option>');
+            }
+            if (opt2 == 1) {
+                c_cat = $("#choix_cat option:selected").attr("id");
+                $sel2.html('');
+                $sel2.append('<option id="none">Sélection</option>');
+            }
+            if (c_type == 'none' || c_cat == 'none' || c_id == 'none')
+                $("#addb").attr('disabled', 'disabled');
         }
-    });
-    */
 
-    $('#choix_qt').change(function() {
-        c_qt = $(this).val();
+        rezer("1", "1");
+
+        $('#choix_type').change(function () {
+            rezer(1, 1);
+            if (c_type != 'none') {
+                $.post('../inc/getSTList.php', function (response) {
+                    var lcat = jQuery.parseJSON(response);
+                    $.each(lcat, function () {
+                        $sel1.append('<option id="' + this.word + '">' + this.word.substring(0, this.word.length - 2) + '</option>');
+                    });
+                });
+            }
+        });
+
+        $('#choix_cat').change(function () {
+            rezer(0, 1);
+            if (c_type != 'none' && c_cat != 'none') {
+                $.post('../inc/getCList.php', {
+                    type: c_type,
+                    cat: c_cat
+                }, function (response) {
+                    var lchx = jQuery.parseJSON(response);
+                    $.each(lchx, function () {
+                        $sel2.append('<option id="' + this.id + '">' + this.name + '</option>');
+                    });
+                });
+            }
+        });
+
+        $('#choix_id').change(function () {
+            c_id = $("#choix_id option:selected").attr("id");
+            if (c_type != 'none' && c_cat != 'none' && c_id != 'none') {
+                $("#addb").removeAttr('disabled');
+            }
+        });
+
+        $('#choix_qt').change(function () {
+            c_qt = $(this).val();
+        });
+
+        $('#addb').click(function () {
+            if (c_type != 'none' && c_cat != 'none' && c_id != 'none') {
+                $.post('../inc/getCOne.php', {
+                    id: c_id,
+                    type: c_type,
+                    qt: c_qt
+                }, function (response) {
+                    var line = jQuery.parseJSON(response);
+                    doc.push(line);
+                });
+            }
+            console.log(doc);
+        });
+
     });
-});
 </script>
