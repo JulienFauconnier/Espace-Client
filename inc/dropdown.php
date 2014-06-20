@@ -16,11 +16,13 @@
                 c_type = $("#choix_type option:selected").attr("id");
                 $sel1.html('');
                 $sel1.append('<option id="none">Sélection</option>');
+                c_cat = $("#choix_cat option:selected").attr("id");
             }
             if (opt2 == 1) {
                 c_cat = $("#choix_cat option:selected").attr("id");
                 $sel2.html('');
                 $sel2.append('<option id="none">Sélection</option>');
+                c_id = $("#choix_id option:selected").attr("id");
             }
             if (c_type == 'none' || c_cat == 'none' || c_id == 'none')
                 $("#addb").attr('disabled', 'disabled');
@@ -78,6 +80,22 @@
                 });
             }
             console.log(doc);
+        });
+
+        $('#submit').click(function () {
+            if (doc != '') {
+                $.post('../inc/createEDoc.php', {
+                    tab: doc,
+                }, function (response) {
+                    console.log(response);
+                });
+            }
+            else
+                alert("Ajoutez un article !");
+        });
+
+        $('#reset').click(function () {
+            rezer(1, 1);
         });
 
     });
