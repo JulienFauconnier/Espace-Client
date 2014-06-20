@@ -95,7 +95,7 @@ $langues = array (
 	'tr' => "T&#252;rk&#231;e",
 	'wa' => "walon",
 	'zh_tw' => "&#21488;&#28771;&#20013;&#25991;", // chinois taiwan (ecr. traditionnelle)
-);
+	);
 
 //
 // Traduction des textes de SPIP
@@ -152,78 +152,78 @@ function move_all($src,$dest) {
 				if (!is_dir($d))
 					if (!mkdir_recursif($d, $chmod))
 						die("impossible de creer $d");
-				move_all($s, $d);
-				rmdir($s);
-				// verifier qu'on en a pas oublie (arrive parfois il semblerait ...)
-				// si cela arrive, on fait un clearstatcache, et on recommence un move all...
-				if (is_dir($s)){
-					clearstatcache();
 					move_all($s, $d);
 					rmdir($s);
+				// verifier qu'on en a pas oublie (arrive parfois il semblerait ...)
+				// si cela arrive, on fait un clearstatcache, et on recommence un move all...
+					if (is_dir($s)){
+						clearstatcache();
+						move_all($s, $d);
+						rmdir($s);
+					}
+				}
+				else
+					if (is_file($s))	rename ($s, $d);
+			}
+		// liberer le pointeur sinon windows ne permet pas le rmdir eventuel
+			closedir($dh);
+		}
+	}
+
+	function regler_langue_navigateurT() {
+		$accept_langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+		if (is_array($accept_langs)) {
+			foreach($accept_langs as $s) {
+				if (preg_match('#^([a-z]{2,3})(-[a-z]{2,3})?(;q=[0-9.]+)?$#i', trim($s), $r)) {
+					$lang = strtolower($r[1]);
+					if (isset($GLOBALS['langues'][$lang])) return $lang;
 				}
 			}
-			else
-				if (is_file($s))	rename ($s, $d);
 		}
-		// liberer le pointeur sinon windows ne permet pas le rmdir eventuel
-		closedir($dh);
+		return false;
 	}
-}
 
-function regler_langue_navigateurT() {
-	$accept_langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-	if (is_array($accept_langs)) {
-		foreach($accept_langs as $s) {
-			if (preg_match('#^([a-z]{2,3})(-[a-z]{2,3})?(;q=[0-9.]+)?$#i', trim($s), $r)) {
-				$lang = strtolower($r[1]);
-				if (isset($GLOBALS['langues'][$lang])) return $lang;
-			}
+	function menu_languesT($lang, $script='', $hidden=array()) {
+
+		$r = '';
+		if (preg_match(',action=([a-z_]+),', $script, $m)) {
+			$r .= "<input type='hidden' name='action' value='".$m[1]."' />";
+			$script .= '&amp;';
 		}
-	}
-	return false;
-}
+		else
+			$script .= '?';
 
-function menu_languesT($lang, $script='', $hidden=array()) {
+		foreach ($hidden as $k => $v)
+			if ($v AND $k!='etape') $script .= "$k=$v&amp;";
 
-	$r = '';
-	if (preg_match(',action=([a-z_]+),', $script, $m)) {
-		$r .= "<input type='hidden' name='action' value='".$m[1]."' />";
-		$script .= '&amp;';
-	}
-	else
-		$script .= '?';
-
-	foreach ($hidden as $k => $v)
-		if ($v AND $k!='etape') $script .= "$k=$v&amp;";
-
-	$r .= '<select name="lang"
+		$r .= '<select name="lang"
 		onchange="window.location=\''.$script.'lang=\'+this.value;">';
 
-	foreach ($GLOBALS['langues'] as $l => $nom)
-		$r .= '<option value="'.$l.'"' . ($l == $lang ? ' selected="selected"' : '')
-			. '>'.$nom."</option>\n";
-	$r .= '</select> <noscript><div><input type="submit" name="ok" value="ok" /></div></noscript>';
-	return $r;
-}
+		foreach ($GLOBALS['langues'] as $l => $nom)
+			$r .= '<option value="'.$l.'"' . ($l == $lang ? ' selected="selected"' : '')
+		. '>'.$nom."</option>\n";
+		$r .= '</select> <noscript><div><input type="submit" name="ok" value="ok" /></div></noscript>';
+		return $r;
+	}
 
 
 //
 // Gestion des droits d'acces
 //
-function tester_repertoire() {
-	global $chmod;
+	function tester_repertoire() {
+		global $chmod;
 
-	$ok = false;
-	$self = basename($_SERVER['PHP_SELF']);
-	$uid = @fileowner('.');
-	$uid2 = @fileowner($self);
-	$gid = @filegroup('.');
-	$gid2 = @filegroup($self);
-	$perms = @fileperms($self);
+		$ok = false;
+		$self = basename($_SERVER['PHP_SELF']);
+		$uid = @fileowner('.');
+		$uid2 = @fileowner($self);
+		$gid = @filegroup('.');
+		$gid2 = @filegroup($self);
+		$perms = @fileperms($self);
 
 	// Comparer l'appartenance d'un fichier cree par PHP
 	// avec celle du script et du repertoire courant
-	@rmdir('test');
+		@rmdir('test');
 	@unlink('test'); // effacer au cas ou
 	@touch('test');
 	if ($uid > 0 && $uid == $uid2 && @fileowner('test') == $uid)
@@ -287,7 +287,7 @@ function init_http($get, $url, $refuse_gz=false) {
 		if (!($proxy_port = $t2['port'])) $proxy_port = 80;
 		$f = @fsockopen($proxy_host, $proxy_port);
 	} else
-		$f = @fsockopen($scheme_fsock.$host, $port);
+	$f = @fsockopen($scheme_fsock.$host, $port);
 
 	if ($f) {
 		if ($http_proxy)
@@ -302,7 +302,7 @@ function init_http($get, $url, $refuse_gz=false) {
 		// Proxy authentifiant
 		if (isset($proxy_user) AND $proxy_user) {
 			fputs($f, "Proxy-Authorization: Basic "
-			. base64_encode($proxy_user . ":" . $proxy_pass) . "\r\n");
+				. base64_encode($proxy_user . ":" . $proxy_pass) . "\r\n");
 		}
 
 	}
@@ -331,37 +331,37 @@ function recuperer_page($url) {
 	if (!preg_match(',^[a-z]+://,i', $url)) $url = 'http://'.$url;
 
 	for ($i=0;$i<10;$i++) {	// dix tentatives maximum en cas d'entetes 301...
-		list($f, $fopen) = init_http('GET', $url);
+	list($f, $fopen) = init_http('GET', $url);
 
 		// si on a utilise fopen() - passer a la suite
-		if ($fopen) {
-			break;
-		} else {
+	if ($fopen) {
+		break;
+	} else {
 			// Fin des entetes envoyees par SPIP
-			fputs($f,"\r\n");
+		fputs($f,"\r\n");
 
 			// Reponse du serveur distant
-			$s = trim(fgets($f, 16384));
-			if (preg_match(',^HTTP/[0-9]+\.[0-9]+ ([0-9]+),', $s, $r)) {
-				$status = $r[1];
-			}
-			else return;
+		$s = trim(fgets($f, 16384));
+		if (preg_match(',^HTTP/[0-9]+\.[0-9]+ ([0-9]+),', $s, $r)) {
+			$status = $r[1];
+		}
+		else return;
 
 			// Entetes HTTP de la page
-			$headers = '';
-			while ($s = trim(fgets($f, 16384))) {
-				$headers .= $s."\n";
-				if (preg_match(',^Location: (.*),i', $s, $r)) {
-					$location = $r[1];
-				}
-				if (preg_match(",^Content-Encoding: .*gzip,i", $s))
-					$gz = true;
+		$headers = '';
+		while ($s = trim(fgets($f, 16384))) {
+			$headers .= $s."\n";
+			if (preg_match(',^Location: (.*),i', $s, $r)) {
+				$location = $r[1];
 			}
-			if ($status >= 300 AND $status < 400 AND $location)
-				$url = $location;
-			else if ($status != 200)
-				return;
-			else
+			if (preg_match(",^Content-Encoding: .*gzip,i", $s))
+				$gz = true;
+		}
+		if ($status >= 300 AND $status < 400 AND $location)
+			$url = $location;
+		else if ($status != 200)
+			return;
+		else
 				break; # ici on est content
 			fclose($f);
 			$f = false;
@@ -450,15 +450,15 @@ function debut_html($corps='', $hidden=array()) {
 	foreach (explode(',', _SPIP_LOADER_EXTRA) as $fil) {
 		switch (strrchr($fil, '.')) {
 			case '.css':
-				$css .= '
-	<!-- css pour tuning optionnel, au premier chargement, il manquera si pas droits ... -->
-	<link rel="stylesheet" href="' . basename($fil) . '" type="text/css" media="all" />';
-				break;
+			$css .= '
+			<!-- css pour tuning optionnel, au premier chargement, il manquera si pas droits ... -->
+			<link rel="stylesheet" href="' . basename($fil) . '" type="text/css" media="all" />';
+			break;
 			case '.js':
-				$js .= '
-	<!-- js pour tuning optionnel, au premier chargement, il manquera... -->
-	<script src="' . basename($fil) . '" type="text/javascript"></script>';
-				break;
+			$js .= '
+			<!-- js pour tuning optionnel, au premier chargement, il manquera... -->
+			<script src="' . basename($fil) . '" type="text/javascript"></script>';
+			break;
 		}
 	}
 
@@ -471,17 +471,17 @@ function debut_html($corps='', $hidden=array()) {
 	"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
 	<html 'xml:lang=$lang' dir='spip_lang_dir'>
 	<head>
-	<title>$titre</title>
-	<meta http-equiv='Expires' content='0' />
-	<meta http-equiv='cache-control' content='no-cache,no-store' />
-	<meta http-equiv='pragma' content='no-cache' />
-	<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-	<style type='text/css'>
-		body {
-			background-color:white;
-			color:black;
-			margin:50px 0 0 0;
-		}
+		<title>$titre</title>
+		<meta http-equiv='Expires' content='0' />
+		<meta http-equiv='cache-control' content='no-cache,no-store' />
+		<meta http-equiv='pragma' content='no-cache' />
+		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+		<style type='text/css'>
+			body {
+				background-color:white;
+				color:black;
+				margin:50px 0 0 0;
+			}
 		#main {
 			margin-left: auto;
 			margin-right: auto;
@@ -513,179 +513,179 @@ function debut_html($corps='', $hidden=array()) {
 			font-size: 100%;
 		}
 	</style>$css$js
-	</head>
-	<body>
+</head>
+<body>
 	<div id='main'>
-	<form action='" . $script . "' method='get'>" .
-	"<div style='float:$spip_lang_right'>" .
-	menu_languesT($lang, $script, $hidden) .
-	"</div>
-	<div style='font-family:Georgia,Garamond,Times,serif; font-size:110%;'>
-	<h1>" .
-	$titre .
-	"</h1>" .
-	$corps .
-	$hid .
-	"</div></form>";
-}
+		<form action='" . $script . "' method='get'>" .
+			"<div style='float:$spip_lang_right'>" .
+			menu_languesT($lang, $script, $hidden) .
+			"</div>
+			<div style='font-family:Georgia,Garamond,Times,serif; font-size:110%;'>
+				<h1>" .
+					$titre .
+					"</h1>" .
+					$corps .
+					$hid .
+					"</div></form>";
+				}
 
-function fin_html()
-{
-	global $taux;
-	echo ($taux ? '
-	<div id="taux" style="display:none">'.$taux.'</div>' : '') .
-	'
-	<p style="text-align:right;font-size:x-small;">spip_loader '
-	. _SPIP_LOADER_VERSION
-	.'</p>
-	</body>
-	</html>
-	';
+				function fin_html()
+				{
+					global $taux;
+					echo ($taux ? '
+						<div id="taux" style="display:none">'.$taux.'</div>' : '') .
+					'
+					<p style="text-align:right;font-size:x-small;">spip_loader '
+						. _SPIP_LOADER_VERSION
+						.'</p>
+					</body>
+					</html>
+					';
 
 	// forcer l'envoi du buffer par tous les moyens !
-	echo(str_repeat("<br />\r\n",256));
-	while (@ob_get_level()){
-		@ob_flush();
-		@flush();
-		@ob_end_flush();
-	}
-}
+					echo(str_repeat("<br />\r\n",256));
+					while (@ob_get_level()){
+						@ob_flush();
+						@flush();
+						@ob_end_flush();
+					}
+				}
 
-function nettoyer_racine($fichier) {
+				function nettoyer_racine($fichier) {
 
-	@unlink($fichier);
-	@unlink(_DIR_BASE.'pclzip.php');
-	$d = opendir(_DIR_BASE);
-	while (false !== ($f = readdir($d))) {
-		if(preg_match('/^tradloader_(.+).php$/', $f)) @unlink(_DIR_BASE.$f);
-	}
-	closedir($d);
-	return true;
-}
+					@unlink($fichier);
+					@unlink(_DIR_BASE.'pclzip.php');
+					$d = opendir(_DIR_BASE);
+					while (false !== ($f = readdir($d))) {
+						if(preg_match('/^tradloader_(.+).php$/', $f)) @unlink(_DIR_BASE.$f);
+					}
+					closedir($d);
+					return true;
+				}
 // un essai pour parer le probleme incomprehensible des fichiers pourris
-function touchCallBack($p_event, &$p_header)
-{
+				function touchCallBack($p_event, &$p_header)
+				{
 	// bien extrait ?
-	if ($p_header['status'] == 'ok') {
+					if ($p_header['status'] == 'ok') {
 	    // allez, on touche le fichier, le @ est pour les serveurs sous Windows qui ne comprennent pas touch()
-	    @touch($p_header['filename']);
-	}
-	return 1;
-}
-function microtime_float()
-{
-    list($usec, $sec) = explode(" ", microtime());
-    return ((float)$usec + (float)$sec);
-}
+						@touch($p_header['filename']);
+					}
+					return 1;
+				}
+				function microtime_float()
+				{
+					list($usec, $sec) = explode(" ", microtime());
+					return ((float)$usec + (float)$sec);
+				}
 
-function verifie_zlib_ok()
-{
-	global $taux;
-	if (!function_exists("gzopen")) return false;
+				function verifie_zlib_ok()
+				{
+					global $taux;
+					if (!function_exists("gzopen")) return false;
 
-	if(!file_exists($f = _DIR_BASE . 'pclzip.php')) {
-			$taux = microtime_float();
-			$contenu = recuperer_page(_URL_LOADER_DL . 'pclzip.php.txt');
-			if ($contenu) {
-					ecrire_fichierT($f, $contenu);
+					if(!file_exists($f = _DIR_BASE . 'pclzip.php')) {
+						$taux = microtime_float();
+						$contenu = recuperer_page(_URL_LOADER_DL . 'pclzip.php.txt');
+						if ($contenu) {
+							ecrire_fichierT($f, $contenu);
+						}
+						$taux = _PCL_ZIP_SIZE / (microtime_float() - $taux);
+					}
+					include $f;
+					$necessaire = array();
+					foreach (explode(',', _SPIP_LOADER_EXTRA) as $fil) {
+						$necessaire[$fil] = strrchr($fil, '.') == '.php' ? '.txt' : '';
+					}
+					foreach ($necessaire as $fil=>$php) {
+						if (!file_exists($f = _DIR_BASE . basename($fil))) {
+							$contenu = recuperer_page(_URL_LOADER_DL . $fil . $php);
+							if ($contenu) {
+								ecrire_fichierT($f, $contenu);
+							}
+						}
+						if ($php){
+							include $f;
+						}
+					}
+					return true;
+				}
+
+				function spip_loader_reinstalle() {
+					if(!defined(_SPIP_LOADER_UPDATE_AUTEURS))
+						define('_SPIP_LOADER_UPDATE_AUTEURS', '1');
+					if (!isset($GLOBALS['auteur_session']['statut'])
+						OR $GLOBALS['auteur_session']['statut'] != '0minirezo'
+						OR !in_array($GLOBALS['auteur_session']['id_auteur'],
+							explode(':', _SPIP_LOADER_UPDATE_AUTEURS))) {
+						include_spip('inc/headers');
+					include_spip('inc/minipres');
+					http_status('403');
+					install_debut_html();
+					echo _T('ecrire:avis_non_acces_page');
+					install_fin_html();
+					exit;
+				}
 			}
-			$taux = _PCL_ZIP_SIZE / (microtime_float() - $taux);
-	}
-	include $f;
-	$necessaire = array();
-	foreach (explode(',', _SPIP_LOADER_EXTRA) as $fil) {
-			$necessaire[$fil] = strrchr($fil, '.') == '.php' ? '.txt' : '';
-	}
-	foreach ($necessaire as $fil=>$php) {
-		if (!file_exists($f = _DIR_BASE . basename($fil))) {
-			$contenu = recuperer_page(_URL_LOADER_DL . $fil . $php);
-			if ($contenu) {
-					ecrire_fichierT($f, $contenu);
-			}
-		}
-		if ($php){
-			  include $f;
-		}
-	}
-	return true;
-}
 
-function spip_loader_reinstalle() {
-	if(!defined(_SPIP_LOADER_UPDATE_AUTEURS))
-		define('_SPIP_LOADER_UPDATE_AUTEURS', '1');
-	if (!isset($GLOBALS['auteur_session']['statut'])
-	OR $GLOBALS['auteur_session']['statut'] != '0minirezo'
-	OR !in_array($GLOBALS['auteur_session']['id_auteur'],
-	explode(':', _SPIP_LOADER_UPDATE_AUTEURS))) {
-		include_spip('inc/headers');
-		include_spip('inc/minipres');
-		http_status('403');
-		install_debut_html();
-		echo _T('ecrire:avis_non_acces_page');
-		install_fin_html();
-		exit;
-	}
-}
-
-function spip_deballe_paquet($paquet, $fichier, $dest, $range)
-{
-	global $chmod;
+			function spip_deballe_paquet($paquet, $fichier, $dest, $range)
+			{
+				global $chmod;
 
 	// le repertoire temporaire est invariant pour permettre la reprise
-	@mkdir ($tmp = _DIR_BASE.'zip_'.md5($fichier), $chmod);
-	$ok = is_dir($tmp);
+				@mkdir ($tmp = _DIR_BASE.'zip_'.md5($fichier), $chmod);
+				$ok = is_dir($tmp);
 
-	$zip = new PclZip($fichier);
-	$content = $zip->listContent();
-	$max_index = count($content);
-	$start_index = $_REQUEST['start']?$_REQUEST['start']:0;
+				$zip = new PclZip($fichier);
+				$content = $zip->listContent();
+				$max_index = count($content);
+				$start_index = $_REQUEST['start']?$_REQUEST['start']:0;
 
-	if ($start_index<$max_index){
-		if (!$range) $range = _PCL_ZIP_RANGE;
-		$end_index = min($start_index+$range,$max_index);
-		$ok &= $zip->extractByIndex("$start_index-$end_index",
-					PCLZIP_OPT_PATH, $tmp,
-					PCLZIP_OPT_SET_CHMOD, $chmod,
-					PCLZIP_OPT_REPLACE_NEWER,
-					PCLZIP_OPT_REMOVE_PATH, _REMOVE_PATH_ZIP."/",
-					PCLZIP_CB_POST_EXTRACT, 'touchCallBack'
-					);
-	}
+				if ($start_index<$max_index){
+					if (!$range) $range = _PCL_ZIP_RANGE;
+					$end_index = min($start_index+$range,$max_index);
+					$ok &= $zip->extractByIndex("$start_index-$end_index",
+						PCLZIP_OPT_PATH, $tmp,
+						PCLZIP_OPT_SET_CHMOD, $chmod,
+						PCLZIP_OPT_REPLACE_NEWER,
+						PCLZIP_OPT_REMOVE_PATH, _REMOVE_PATH_ZIP."/",
+						PCLZIP_CB_POST_EXTRACT, 'touchCallBack'
+						);
+				}
 
-	if (!$ok OR $zip->error_code<0) {
-		debut_html();
+				if (!$ok OR $zip->error_code<0) {
+					debut_html();
 
-		echo _TT('tradloader:donnees_incorrectes',
-					array('erreur' => $zip->errorInfo()));
-		fin_html();
-	} else {
+					echo _TT('tradloader:donnees_incorrectes',
+						array('erreur' => $zip->errorInfo()));
+					fin_html();
+				} else {
 		// si l'extraction n'est pas finie, relancer
-		if ($start_index<$max_index){
+					if ($start_index<$max_index){
 
-			$url = _DIR_BASE._SPIP_LOADER_SCRIPT
-			.  (strpos(_SPIP_LOADER_SCRIPT, '?') ? '&' : '?')
-			. "etape=fichier&chemin=$paquet&dest=$dest&start=$end_index";
-			$progres = $start_index/$max_index;
-			spip_redirige_boucle($url,$progres);
-		}
+						$url = _DIR_BASE._SPIP_LOADER_SCRIPT
+						.  (strpos(_SPIP_LOADER_SCRIPT, '?') ? '&' : '?')
+						. "etape=fichier&chemin=$paquet&dest=$dest&start=$end_index";
+						$progres = $start_index/$max_index;
+						spip_redirige_boucle($url,$progres);
+					}
 
-		if ($dest) {
-			@mkdir(_DIR_PLUGINS, $chmod);
-			$dir = _DIR_PLUGINS . $dest;
-			$url = _DIR_BASE._SPIP_LOADER_PLUGIN_RETOUR;
-		}
-		else {
-			$dir =  _DIR_BASE;
-			$url = _DIR_BASE._SPIP_LOADER_URL_RETOUR;
-		}
-		move_all($tmp, $dir);
-		rmdir($tmp);
-		nettoyer_racine($fichier);
-		header("Location: $url");
-	}
-}
+					if ($dest) {
+						@mkdir(_DIR_PLUGINS, $chmod);
+						$dir = _DIR_PLUGINS . $dest;
+						$url = _DIR_BASE._SPIP_LOADER_PLUGIN_RETOUR;
+					}
+					else {
+						$dir =  _DIR_BASE;
+						$url = _DIR_BASE._SPIP_LOADER_URL_RETOUR;
+					}
+					move_all($tmp, $dir);
+					rmdir($tmp);
+					nettoyer_racine($fichier);
+					header("Location: $url");
+				}
+			}
 
-function spip_redirige_boucle($url, $progres = ""){
+			function spip_redirige_boucle($url, $progres = ""){
 	//@apache_setenv('no-gzip', 1); // provoque page blanche chez certains hebergeurs donc ne pas utiliser
 	@ini_set("zlib.output_compression","0"); // pour permettre l'affichage au fur et a mesure
 	@ini_set("output_buffering","off");
@@ -703,17 +703,17 @@ function spip_redirige_boucle($url, $progres = ""){
 function spip_presente_deballe($fichier, $paquet, $dest, $range)
 {
 	$nom = (_DEST_PAQUET_ZIP == '') ?
-			_TT('tradloader:ce_repertoire') :
-			(_TT('tradloader:du_repertoire').
-				' <tt>'._DEST_PAQUET_ZIP.'</tt>');
+	_TT('tradloader:ce_repertoire') :
+	(_TT('tradloader:du_repertoire').
+		' <tt>'._DEST_PAQUET_ZIP.'</tt>');
 
 	$hidden = array('chemin' => $paquet,
-			'dest' => $dest,
-			'range' => $range,
-			'etape' => file_exists($fichier) ? 'fichier' : 'charger');
+		'dest' => $dest,
+		'range' => $range,
+		'etape' => file_exists($fichier) ? 'fichier' : 'charger');
 
 	$corps = _TT('tradloader:texte_intro',
-		    array('paquet'=>strtoupper(_NOM_PAQUET_ZIP),'dest'=> $nom))
+		array('paquet'=>strtoupper(_NOM_PAQUET_ZIP),'dest'=> $nom))
 	. "<div style='text-align:".$GLOBALS['spip_lang_right']."'>"
 	. '<input type="submit" value="'._TT('tradloader:bouton_suivant').'" />'
 	. '</div>';
@@ -772,15 +772,15 @@ $GLOBALS['taux'] = 0; // calcul eventuel du taux de transfert+dezippage
 // En cas de reinstallation, verifier que le demandeur a les droits avant tout
 // definir _FILE_CONNECT a autre chose que machin.php si on veut pas
 if (@file_exists('ecrire/inc_version.php')) {
-	define('_SPIP_LOADER_URL_RETOUR', "ecrire/?exec=accueil"); 
+	define('_SPIP_LOADER_URL_RETOUR', "ecrire/?exec=accueil");
 	include_once 'ecrire/inc_version.php';
 	if (
-	  (defined('_FILE_CONNECT') AND _FILE_CONNECT AND strpos(_FILE_CONNECT, '.php'))
-	  OR defined('_SITES_ADMIN_MUTUALISATION')
-	) {
+		(defined('_FILE_CONNECT') AND _FILE_CONNECT AND strpos(_FILE_CONNECT, '.php'))
+		OR defined('_SITES_ADMIN_MUTUALISATION')
+		) {
 		spip_loader_reinstalle();
-	}
-} else define('_SPIP_LOADER_URL_RETOUR', "ecrire/?exec=install"); 
+}
+} else define('_SPIP_LOADER_URL_RETOUR', "ecrire/?exec=install");
 
 $droits = tester_repertoire();
 
@@ -799,13 +799,13 @@ if (!$GLOBALS['lang']) {
 	debut_html();
 	$q = $_SERVER['QUERY_STRING'];
 	echo _TT('tradloader:texte_preliminaire',
-			array('paquet'=>strtoupper(_NOM_PAQUET_ZIP),
-			      'href' => ('spip_loader.php' . ($q ? "?$q" : '')),
-			      'chmod'=>sprintf('%04o',$chmod)));
+		array('paquet'=>strtoupper(_NOM_PAQUET_ZIP),
+			'href' => ('spip_loader.php' . ($q ? "?$q" : '')),
+			'chmod'=>sprintf('%04o',$chmod)));
 	fin_html();
 } elseif (!verifie_zlib_ok())
 	// on ne peut pas decompresser
-	die ('fonctions zip non disponibles');
+die ('fonctions zip non disponibles');
 else {
 	// y a tout ce qu'il faut pour que cela marche
 	$dest = !preg_match('/^[\w-_.]+$/', $_REQUEST['dest'])  ? '' : $_REQUEST['dest'];

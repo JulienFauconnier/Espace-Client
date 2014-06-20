@@ -25,9 +25,8 @@ if ($type != '' && $cat != ''){
 		)
 		);
 
-	$resultat = sellsyConnect::load()->requestApi($request);
-	$ret = $resultat->response->result;
-	echo (json_encode($ret));
+	$result = sellsyConnect::load()->requestApi($request);
+	echo (json_encode($result->response->result));
 }
 
 ?>

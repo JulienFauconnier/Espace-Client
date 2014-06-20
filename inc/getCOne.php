@@ -12,29 +12,29 @@ include("initAPI.php");
 
 if ($id != '' && $type != '' && $qt!= ''){
 	$request =  array(
-		'method'	=> 'Catalogue.getOne', 
-		'params'	=> array ( 
+		'method'	=> 'Catalogue.getOne',
+		'params'	=> array (
 			'type' 		=> $type,
 			'id' 		=> $id,
 			)
 		);
 
-	$resultat = sellsyConnect::load()->requestApi($request);
-	$resultat = $resultat->response;
+	$result = sellsyConnect::load()->requestApi($request);
+	$result = $result->response;
 
 	$tab = array(
 		'row_type'				=> 'item', //$resultat->type,
 		//'row_linkedid'		=> {{catalogue_id_link}},
-		'row_name'				=> $resultat->name,
-		'row_notes'				=> $resultat->notes,
-		'row_unit'				=> $resultat->unit,
-		'row_unitAmount'		=> $resultat->unitAmount,
-		'row_tax'				=> $resultat->taxrate,
-		'row_taxid'				=> $resultat->taxid,
-		'row_tax2id'			=> $resultat->tax2id,
+		'row_name'				=> $result->name,
+		'row_notes'				=> $result->notes,
+		'row_unit'				=> $result->unit,
+		'row_unitAmount'		=> $result->unitAmount,
+		'row_tax'				=> $result->taxrate,
+		'row_taxid'				=> $result->taxid,
+		'row_tax2id'			=> $result->tax2id,
 		'row_qt'				=> $qt,
 		//'row_isOption'			=> $resultat->,
-		'row_purchaseAmount'	=> ($resultat->unitAmount * (($resultat->taxrate/100) + 1) * $qt)
+		'row_purchaseAmount'	=> ($result->unitAmount * (($result->taxrate/100) + 1) * $qt)
 		);
 
 	//$tab = json_encode($tab);

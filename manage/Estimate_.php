@@ -22,7 +22,7 @@
 <body>
 
 	<?php
-	
+
 	if($_POST['validate'] != 'ok')
 	{
 
@@ -73,10 +73,10 @@
 	else
 	{
 
-//$row[0] = processObject($_POST['choix_type'], $_POST['choix_select'], 1);
-//$row[1] = processObject($_POST['choix_type'], $_POST['choix_select'], 1);
+		//$row[0] = processObject($_POST['choix_type'], $_POST['choix_select'], 1);
+		//$row[1] = processObject($_POST['choix_type'], $_POST['choix_select'], 1);
 
-//setEstimate($row);
+		//setEstimate($row);
 
 	}
 

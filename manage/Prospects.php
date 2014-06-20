@@ -18,44 +18,44 @@ function infoAddress($contact)
 function createProspect($third, $contact, $address)
 {
 
-$request = array(
-	'method'	=> 'Prospects.create',
-	'params'	=> array(
-		'third' => $third,
-		'contact'	=> $contact,
-		'address'	=> $address
-	)
-);
- 
-$retour = sellsyConnect::load()->requestApi($request);
-$retour = $retour->response->status;
+	$request = array(
+		'method'	=> 'Prospects.create',
+		'params'	=> array(
+			'third' => $third,
+			'contact'	=> $contact,
+			'address'	=> $address
+			)
+		);
 
-if($retour == "success")
-	return ("index.php");
-else
-	return ("error.php");
+	$retour = sellsyConnect::load()->requestApi($request);
+	$retour = $retour->response->status;
+
+	if($retour == "success")
+		return ("index.php");
+	else
+		return ("error.php");
 }
 
 function updateProspect($id, $third, $contact, $address)
 {
 
-$request = array(
-	'method'	=> 'Prospects.update',
-	'params'	=> array(
-		'id'		=> $id,
-		'third' 	=> $third,
-		'contact' 	=> $contact,
-		'address' 	=> $address
-	)
-);
- 
-$retour = sellsyConnect::load()->requestApi($request);
-$retour = $retour->response->status;
+	$request = array(
+		'method'	=> 'Prospects.update',
+		'params'	=> array(
+			'id'		=> $id,
+			'third' 	=> $third,
+			'contact' 	=> $contact,
+			'address' 	=> $address
+			)
+		);
 
-if($retour == "success")
-	return ("index.php");
-else
-	return ("error.php");
+	$retour = sellsyConnect::load()->requestApi($request);
+	$retour = $retour->response->status;
+
+	if($retour == "success")
+		return ("index.php");
+	else
+		return ("error.php");
 }
 
 ?>
