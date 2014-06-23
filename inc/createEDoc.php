@@ -6,6 +6,8 @@
 
 $row	= $_POST["row"];
 
+include("initAPI.php");
+
 if ($row != ''){
 	$request = array(
 		'method'	=> 'Document.create',
@@ -29,7 +31,7 @@ if ($row != ''){
 		);
 
 	$result = sellsyConnect::load()->requestApi($request);
-	echo (json_encode($result->response));
+	echo (json_encode($result->response->doc_id));
 }
 
 ?>

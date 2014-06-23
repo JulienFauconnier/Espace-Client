@@ -36,7 +36,8 @@
                 $.post('../inc/getSTList.php', function (response) {
                     var lcat = jQuery.parseJSON(response);
                     $.each(lcat, function () {
-                        $sel1.append('<option id="' + this.word + '">' + this.word.substring(0, this.word.length - 2) + '</option>');
+                        $sel1.append('<option id="' + this.word + '">'
+                            + this.word.substring(0, this.word.length - 2) + '</option>');
                     });
                 });
             }
@@ -51,7 +52,8 @@
                 }, function (response) {
                     var lchx = jQuery.parseJSON(response);
                     $.each(lchx, function () {
-                        $sel2.append('<option id="' + this.id + '">' + this.name + '</option>');
+                        $sel2.append('<option id="' + this.id + '">'
+                            + this.name + ' - ' + Math.round(this.unitAmount * 100)/100 + ' € HT' + '</option>');
                     });
                 });
             }
@@ -75,19 +77,21 @@
                     type: c_type,
                     qt: c_qt
                 }, function (response) {
-                    var line = jQuery.parseJSON(response);
-                    doc.push(line);
+                    doc.push(jQuery.parseJSON(response));
+                    alert("Article Ajouté");
                 });
             }
-            console.log(doc);
+            else
+                alert("Veuillez sélectionner un article");
         });
 
         $('#submit').click(function () {
             if (doc != '') {
+                console.log(doc);
                 $.post('../inc/createEDoc.php', {
-                    tab: doc,
+                    row: doc,
                 }, function (response) {
-                    console.log(response);
+                    alert(response);
                 });
             }
             else

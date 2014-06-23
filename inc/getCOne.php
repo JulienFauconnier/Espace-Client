@@ -37,8 +37,6 @@ if ($id != '' && $type != '' && $qt!= ''){
 		'row_purchaseAmount'	=> ($result->unitAmount * (($result->taxrate/100) + 1) * $qt)
 		);
 
-	//$tab = json_encode($tab);
-
 	echo (json_encode($tab));
 }
 
