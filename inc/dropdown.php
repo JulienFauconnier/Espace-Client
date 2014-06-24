@@ -28,7 +28,16 @@
                 $("#addb").attr('disabled', 'disabled');
         }
 
+        function refresh() {
+            $.post('../inc/getRow.php', {
+                row: doc,
+            }, function(data) {
+                $("#result").html(data);
+            });
+        }
+
         rezer("1", "1");
+        refresh();
 
         $('#choix_type').change(function () {
             rezer(1, 1);
@@ -53,7 +62,7 @@
                     var lchx = jQuery.parseJSON(response);
                     $.each(lchx, function () {
                         $sel2.append('<option id="' + this.id + '">'
-                            + this.name + ' - ' + Math.round(this.unitAmount * 100)/100 + ' € HT' + '</option>');
+                            + this.tradename + ' - ' + Math.round(this.unitAmount * 100)/100 + ' € HT' + '</option>');
                     });
                 });
             }
@@ -78,7 +87,7 @@
                     qt: c_qt
                 }, function (response) {
                     doc.push(jQuery.parseJSON(response));
-                    alert("Article Ajouté");
+                    refresh();
                 });
             }
             else
@@ -87,15 +96,17 @@
 
         $('#submit').click(function () {
             if (doc != '') {
-                console.log(doc);
                 $.post('../inc/createEDoc.php', {
                     row: doc,
                 }, function (response) {
-                    alert(response);
+                    alert("OK");
                 });
             }
             else
                 alert("Ajoutez un article !");
+            doc = [];
+            refresh();
+
         });
 
         $('#reset').click(function () {

@@ -21,68 +21,42 @@
 </head>
 <body>
 
-	<?php
+	<h2>Estimation</h2>
 
-	if($_POST['validate'] != 'ok')
-	{
+	<form name = "ajout" id = "ajout" method = "post" action = "estimate_.php">
+		<fieldset>
+			<label for = "choix_type"> Type: </label>
+			<select id = "choix_type" name = "choix_type">
+				<option id = "none">Sélection</option>
+				<option id = "item">Article</option>
+				<option id = "service">Service</option>
+			</select>
 
-		?>
+			<label for = "choix_cat"> Catégorie: </label>
+			<select id = "choix_cat" name = "choix_cat">
+			</select>
 
-		<h2>Estimation</h2>
+			<label for "choix_id"> Produit: </label>
+			<select id = "choix_id" name = "choix_id">
+			</select>
 
-		<form name = "ajout" id = "ajout" method = "post" action = "estimate.php">
-			<fieldset>
-				<label for = "choix_type"> Type: </label>
-				<select id = "choix_type" name = "choix_type">
-					<option id = "none">Sélection</option>
-					<option id = "item">Article</option>
-					<option id = "service">Service</option>
-				</select>
+			<label for = "choix_qt">Quantité:</label>
+			<input id = "choix_qt" name = "choix_qt" type = "number" value = "1" min = "1" max = "10" />
 
-				<label for = "choix_cat"> Catégorie: </label>
-				<select id = "choix_cat" name = "choix_cat">
-				</select>
+			<button id = "addb" onclick="return false">Ajouter</button>
+		</fieldset>
 
-				<label for "choix_id"> Produit: </label>
-				<select id = "choix_id" name = "choix_id">
-				</select>
+		<fieldset>
+			<span id = "result">&nbsp;</span>
+		</fieldset>
 
-				<label for = "choix_qt">Quantité:</label>
-				<input id = "choix_qt" name = "choix_qt" type = "number" value = "1" min = "1" max = "10" />
+		<div class = "center">
+			<input id = "submit" type = "submit" value = "Envoyer" onclick="return false">
+			<!-- <input id = "reset" type = "reset" value = "Réinitialiser"> -->
+		</div>
 
-				<button id = "addb" onclick="return false">Ajouter</button>
-			</fieldset>
-
-			<br>
-
-			<fieldset>
-				<span id = "resultat">&nbsp;</span>
-			</fieldset>
-
-			<br>
-
-			<div class = "center">
-				<input id = "submit" type = "submit" value = "Envoyer">
-				<!-- <input id = "reset" type = "reset" value = "Réinitialiser"> -->
-			</div>
-
-			<input type = "hidden" name = "validate" id = "validate" value = "ok"/>
-		</form>
-
-		<?php
-
-	}
-	else
-	{
-
-		//$row[0] = processObject($_POST['choix_type'], $_POST['choix_select'], 1);
-		//$row[1] = processObject($_POST['choix_type'], $_POST['choix_select'], 1);
-
-		//setEstimate($row);
-
-	}
-
-	?>
+		<input type = "hidden" name = "validate" id = "validate" value = "ok"/>
+	</form>
 
 </body>
 </html>

@@ -24,14 +24,13 @@ if ($row != ''){
 				//'rateCategory'			=> {{rateCategory}},
 				//'globalDiscount'		=> {{globalDiscount}},
 				//'globalDiscountUnit'	=> {{globalDiscountUnit}},
-				//'hasDoubleVat'		=> {{hasDoubleVat}}
+				//'hasDoubleVat'			=> 'Y'
 				),
 			'row' => $row
 			)
 		);
-
 	$result = sellsyConnect::load()->requestApi($request);
-	echo (json_encode($result->response->doc_id));
+	echo (json_encode($result->status));
 }
 
 ?>

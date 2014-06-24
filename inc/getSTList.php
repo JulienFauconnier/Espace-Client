@@ -22,7 +22,6 @@ $request = array(
 		)
 	)
 	);
-
 $result = sellsyConnect::load()->requestApi($request);
 echo (json_encode($result->response->result));
 
