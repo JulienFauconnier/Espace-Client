@@ -18,45 +18,62 @@
 	include("../inc/dropdown.php");
 	?>
 
+	<link rel="stylesheet" href="../css/foundation.css?<?php echo rand();?>" />
+
 </head>
 <body>
 
-	<h2>Estimation</h2>
+	<div class="row">
+		<form name = "ajout" id = "ajout" method = "post" action = "estimate.php">
+			<fieldset>
+				<legend>Paramètres</legend>
+				<div class="medium-2 large-2 columns">
+					<label for = "choix_type"> Type:
+						<select id = "choix_type" name = "choix_type">
+							<option id = "none">Sélection</option>
+							<option id = "item">Article</option>
+							<option id = "service">Service</option>
+						</select>
+					</label>
+				</div>
 
-	<form name = "ajout" id = "ajout" method = "post" action = "estimate_.php">
-		<fieldset>
-			<label for = "choix_type"> Type: </label>
-			<select id = "choix_type" name = "choix_type">
-				<option id = "none">Sélection</option>
-				<option id = "item">Article</option>
-				<option id = "service">Service</option>
-			</select>
+				<div class="medium-2 large-2 columns">
+					<label for = "choix_cat"> Catégorie:
+						<select id = "choix_cat" name = "choix_cat">
+						</select>
+					</label>
+				</div>
 
-			<label for = "choix_cat"> Catégorie: </label>
-			<select id = "choix_cat" name = "choix_cat">
-			</select>
+				<div class="medium-2 large-2 columns">
+					<label for "choix_id"> Produit:
+						<select id = "choix_id" name = "choix_id">
+						</select>
+					</label>
+				</div>
 
-			<label for "choix_id"> Produit: </label>
-			<select id = "choix_id" name = "choix_id">
-			</select>
+				<div class="medium-2 large-2 columns">
+					<label for = "choix_qt">Quantité:
+						<input id = "choix_qt" name = "choix_qt" type = "number" value = "1" min = "1" max = "10" />
+					</label>
+				</div>
 
-			<label for = "choix_qt">Quantité:</label>
-			<input id = "choix_qt" name = "choix_qt" type = "number" value = "1" min = "1" max = "10" />
+				<div class="medium-2 large-2 columns">
+					<button id = "addb" onclick="return false">Ajouter</button>
+				</div>
+			</fieldset>
 
-			<button id = "addb" onclick="return false">Ajouter</button>
-		</fieldset>
+			<fieldset>
+				<legend>Aperçu</legend>
+				<div class = "columns" id = "result">&nbsp;<div>
+			</fieldset>
 
-		<fieldset>
-			<span id = "result">&nbsp;</span>
-		</fieldset>
-
-		<div class = "center">
-			<input id = "submit" type = "submit" value = "Envoyer" onclick="return false">
-			<!-- <input id = "reset" type = "reset" value = "Réinitialiser"> -->
-		</div>
-
-		<input type = "hidden" name = "validate" id = "validate" value = "ok"/>
-	</form>
-
+			<div class="medium-2 medium-push-4 large-2 large-push-4 columns text-right">
+				<button class = "expand" id = "submit" onclick="return false">Valider</button>
+			</div>
+			<div class="medium-2 medium-pull-4 large-2 large-pull-4 large columns text-left">
+				<button class = "expand" id = "reset" onclick="return false">Réinitialiser</button>
+			</div>
+		</form>
+	</div>
 </body>
 </html>

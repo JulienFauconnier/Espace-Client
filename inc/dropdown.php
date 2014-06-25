@@ -99,18 +99,18 @@
                 $.post('../inc/createEDoc.php', {
                     row: doc,
                 }, function (response) {
-                    alert("OK");
+                    doc = [];
+                    refresh();
                 });
             }
             else
                 alert("Ajoutez un article !");
-            doc = [];
-            refresh();
 
         });
 
         $('#reset').click(function () {
-            rezer(1, 1);
+            doc = [];
+            refresh();
         });
 
     });
