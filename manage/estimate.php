@@ -1,7 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<meta charset = "UTF-8">
+<!doctype html>
 <html>
-<head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Estimation</title>
 
 	<!-- Insérer ici la vérification de la connexion -->
@@ -28,24 +29,24 @@
 			<fieldset>
 				<legend>Paramètres</legend>
 				<div class="medium-2 large-2 columns">
-					<label for = "choix_type"> Type:
+					<label for = "choix_type">Type:
 						<select id = "choix_type" name = "choix_type">
-							<option id = "none">Sélection</option>
-							<option id = "item">Article</option>
+							<option id = "none">Choisir un Type</option>
+							<option id = "item">Produit</option>
 							<option id = "service">Service</option>
 						</select>
 					</label>
 				</div>
 
-				<div class="medium-2 large-2 columns">
-					<label for = "choix_cat"> Catégorie:
+				<div class="medium-3 large-3 columns">
+					<label for = "choix_cat">Catégorie:
 						<select id = "choix_cat" name = "choix_cat">
 						</select>
 					</label>
 				</div>
 
-				<div class="medium-2 large-2 columns">
-					<label for "choix_id"> Produit:
+				<div class="medium-3 large-3 columns">
+					<label for "choix_id">Prestation:
 						<select id = "choix_id" name = "choix_id">
 						</select>
 					</label>
@@ -53,12 +54,12 @@
 
 				<div class="medium-2 large-2 columns">
 					<label for = "choix_qt">Quantité:
-						<input id = "choix_qt" name = "choix_qt" type = "number" value = "1" min = "1" max = "10" />
+						<input id = "choix_qt" name = "choix_qt" type = "number" value = "1" min = "1" max = "10"/>
 					</label>
 				</div>
 
 				<div class="medium-2 large-2 columns">
-					<button id = "addb" onclick="return false">Ajouter</button>
+					<button class = "expand" id = "addb" onclick="return false">Ajouter</button>
 				</div>
 			</fieldset>
 

@@ -11,21 +11,25 @@
 
         var doc = [];
 
+        function lockb() {
+            $('#submit').prop('disabled', true);
+            $('#reset').prop('disabled', true);
+        }
+
         function rezer(opt1, opt2) {
             if (opt1 == 1) {
                 c_type = $("#choix_type option:selected").attr("id");
                 $sel1.html('');
-                $sel1.append('<option id="none">Sélection</option>');
+                $sel1.append('<option id="none">Choisir une Catégorie</option>');
                 c_cat = $("#choix_cat option:selected").attr("id");
             }
             if (opt2 == 1) {
                 c_cat = $("#choix_cat option:selected").attr("id");
                 $sel2.html('');
-                $sel2.append('<option id="none">Sélection</option>');
+                $sel2.append('<option id="none">Choisir une Prestation</option>');
                 c_id = $("#choix_id option:selected").attr("id");
             }
-            if (c_type == 'none' || c_cat == 'none' || c_id == 'none')
-                $("#addb").attr('disabled', 'disabled');
+            $('#addb').prop('disabled', true);
         }
 
         function refresh() {
@@ -38,6 +42,7 @@
 
         rezer("1", "1");
         refresh();
+        lockb();
 
         $('#choix_type').change(function () {
             rezer(1, 1);
@@ -70,9 +75,12 @@
 
         $('#choix_id').change(function () {
             c_id = $("#choix_id option:selected").attr("id");
-            if (c_type != 'none' && c_cat != 'none' && c_id != 'none') {
-                $("#addb").removeAttr('disabled');
+            if (c_id != 'none') {
+                $('#addb').prop('disabled', false);
             }
+            else
+                $('#addb').prop('disabled', true);
+
         });
 
         $('#choix_qt').change(function () {
@@ -80,18 +88,16 @@
         });
 
         $('#addb').click(function () {
-            if (c_type != 'none' && c_cat != 'none' && c_id != 'none') {
-                $.post('../inc/getCOne.php', {
-                    id: c_id,
-                    type: c_type,
-                    qt: c_qt
-                }, function (response) {
-                    doc.push(jQuery.parseJSON(response));
-                    refresh();
-                });
-            }
-            else
-                alert("Veuillez sélectionner un article");
+            $.post('../inc/getCOne.php', {
+                id: c_id,
+                type: c_type,
+                qt: c_qt
+            }, function (response) {
+                doc.push(jQuery.parseJSON(response));
+                refresh();
+                $('#submit').prop('disabled', false);
+                $('#reset').prop('disabled', false);
+            });
         });
 
         $('#submit').click(function () {
@@ -101,16 +107,15 @@
                 }, function (response) {
                     doc = [];
                     refresh();
+                    lockb();
                 });
             }
-            else
-                alert("Ajoutez un article !");
-
         });
 
         $('#reset').click(function () {
             doc = [];
             refresh();
+            lockb();
         });
 
     });

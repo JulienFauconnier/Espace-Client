@@ -33,7 +33,7 @@ if ($id != '' && $type != '' && $qt!= ''){
 		'row_tax2id'			=> $result->tax2id,
 		'row_qt'				=> $qt,
 		//'row_isOption'			=> $resultat->,
-		'row_purchaseAmount'	=> ($result->unitAmount * (($result->taxrate/100) + 1) * $qt)
+		'row_purchaseAmount'	=> ($result->unitAmount * $qt)
 		);
 	echo (json_encode($tab));
 }
