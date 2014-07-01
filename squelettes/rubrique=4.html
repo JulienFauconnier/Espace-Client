@@ -12,6 +12,9 @@
 
 	<!-- Insérer ici la vérification de l'existence du client sur Sellsy -->
 
+	<script src = "//code.jquery.com/jquery.js"></script>
+	<script src = "js/csData.min.js"></script>
+	<link rel="stylesheet" href="css/foundation.css?<?php echo rand();?>" />
 </head>
 <body>
 	<div class = "row">
@@ -48,12 +51,11 @@
 					<button class = "expand radius" type = "button" id = "addb">Ajouter</button>
 				</div>
 			</fieldset>
-			<fieldset id="no-more-tables">
+			<fieldset>
 				<legend>Aperçu</legend>
-				<table class = "columns sptable">
+				<table class = "columns">
 					<thead>
-						<tr><th width="16%">Nom</th><th width="40%">Description</th><th width="10%">Qte</th>
-						<th width="13%">PU HT</th><th width="13%">Total HT</th><th width="8%"></th></tr>
+						<tr><th width="16%">Nom</th><th width="40%" class = "hide-for-small-only">Description</th><th width="10%">Qte</th><th width="13%">PU HT</th><th width="13%">Total HT</th><th width="8%"></th></tr>
 					</thead>
 					<tbody id ="result">&nbsp;</tbody>
 				</table>

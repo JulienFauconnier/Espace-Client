@@ -1,28 +1,28 @@
-<BOUCLE_PRINCIPALE(ARTICLES){id_article}>
-<html>
-<head>
-	<meta name="robots" content="noindex,nofollow" />
-	<link rel="shortcut icon" type="image/x-icon" href="http://www.voirlademo.com/images/favicon.ico" />
-	<script src="js/no_right_click.js"></script>
-	<meta charset="utf-8">
-	<title>[(#TITRE|supprimer_numero)]</title>
-	<style>
-		html,body{margin:0;padding:0;}
-		body{background: url('[(#LOGO_ARTICLE|extraire_attribut{src})]') no-repeat top center;height: #HAUTEUR_IMAGEpx;}
-	</style>
-	[
-	<link href='css/styles.css' rel='stylesheet' type='text/css'>
-	<script src="js/jquery-1.7.2.min.js"></script>
-	<script src="js/jquery.colorbox-min.js"></script>
-	<script>
-		$(document).ready(function(){
-			$.colorbox({html:'<div style="width:450px;text-align:justify;padding:10px;"><center><h1>[(#TITRE|supprimer_numero)]</h1></center><br/>(#TEXTE*)</div>'});
-		});
-	</script>
-	]
-</head>
-<body>
-	
-</body>
-</html>
+<BOUCLE_PRINCIPALE(ARTICLES){id_article}>
+<html>
+<head>
+	<meta name="robots" content="noindex,nofollow" />
+	<link rel="shortcut icon" type="image/x-icon" href="http://www.voirlademo.com/images/favicon.ico" />
+	<script src="js/no_right_click.js"></script>
+	<meta charset="utf-8">
+	<title>[(#TITRE|supprimer_numero)]</title>
+	<style>
+		html,body{margin:0;padding:0;}
+		body{background: url('[(#LOGO_ARTICLE|extraire_attribut{src})]') no-repeat top center;height: #HAUTEUR_IMAGEpx;}
+	</style>
+	[
+	<link href='css/styles.css' rel='stylesheet' type='text/css'>
+	<script src="js/jquery-1.7.2.min.js"></script>
+	<script src="js/jquery.colorbox-min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$.colorbox({html:'<div style="width:450px;text-align:justify;padding:10px;"><center><h1>[(#TITRE|supprimer_numero)]</h1></center><br/>(#TEXTE*)</div>'});
+		});
+	</script>
+	]
+</head>
+<body>
+	
+</body>
+</html>
 </BOUCLE_PRINCIPALE>
