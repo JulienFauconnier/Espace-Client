@@ -1,6 +1,6 @@
 @import 'foundation';
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 40em) {
 
 	/* Force table to not be like tables anymore */
 	#no-more-tables table,
@@ -14,9 +14,10 @@
 
 	/* Hide table headers (but not display: none;, for accessibility) */
 	#no-more-tables thead tr {
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
+		display: none;
+		// position: absolute;
+		// top: -9999px;
+		// left: -9999px;
 	}
 
 	#no-more-tables tr { border: 1px solid #ccc; }
@@ -26,32 +27,12 @@
 		border: none;
 		border-bottom: 1px solid #eee;
 		position: relative;
-		//padding-left: 50%;
 		white-space: normal;
-		//text-align:left;
 		text-align:center;
 	}
-
-	// #no-more-tables td:before {
-	// 	/* Now like a table header */
-	// 	position: absolute;
-	// 	/* Top/left values mimic padding */
-	// 	top: 6px;
-	// 	left: 6px;
-	// 	width: 45%;
-	// 	padding-right: 10px;
-	// 	white-space: nowrap;
-	// 	text-align:left;
-	// 	font-weight: bold;
-	// }
-
-	// /*
-	// Label the data
-	// */
-	// #no-more-tables td:before { content: attr(data-title); }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 40em) {
 	/* (Pricing) Small Tables */
 	.sptable {
 		border: solid 1px #dddddd;
@@ -98,5 +79,10 @@
 		font-size: 0.8rem;
 		font-weight: normal;
 		border-bottom: dotted 1px #dddddd;
+	}
+	.sptable .cta-button {
+		background-color: white;
+		text-align: center;
+		padding: 1.25rem 1.25rem 1.25;
 	}
 }

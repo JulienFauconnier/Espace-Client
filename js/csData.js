@@ -34,7 +34,7 @@ $(document).ready(function (){
 					+'</td><td class="quantity">'+this.row_qt
 					+'</td><td class="price">'+Math.round(this.row_unitAmount*100)/100
 					+'€</td><td class="price">'+Math.round(this.row_purchaseAmount*100)/100
-					+'€<td><button class="alert tiny radius rmv large-centered" id="'+init+'" type="button"><strong>X</strong></button></td></tr>');
+					+'€</td><td class="cta-button"><button class="alert tiny radius rmv" id="'+init+'" type="button"><strong>X</strong></button></td></tr>');
 				init++;
 			});
 		}

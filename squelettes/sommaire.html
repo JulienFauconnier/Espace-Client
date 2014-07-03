@@ -1,7 +1,6 @@
 <INCLURE{fond=inc-html}{env}{lang}>
 
 <head>
-
 	<title>#NOM_SITE_SPIP</title>
 
 	<INCLURE{fond=identification_site}{env}{lang}>
@@ -9,19 +8,18 @@
 	<INCLURE{fond=inc-meta}{env}{lang}>
 
 	<INCLURE{fond=inc-head}{env}{lang}>
-
 </head>
 <body>
 
 	<B_code_de_loic_eronne>
 	<ul>
-	<BOUCLE_code_de_loic_eronne(RUBRIQUES){id_rubrique IN 1,2,3}{tout}{par num titre}>
+	<BOUCLE_code_de_loic_eronne(RUBRIQUES){tout}{par num titre}>
 		<li>[<a href="#URL_RUBRIQUE">(#TITRE|ucwords)</a>]</li>
 	</BOUCLE_code_de_loic_eronne>
 	</ul>
 	</B_code_de_loic_eronne>
 
 	<//B_code_de_loic_eronne>
-
+	<INCLURE{fond=inc-foot}{env}{lang}>
 </body>
 </html/>
