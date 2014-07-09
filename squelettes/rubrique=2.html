@@ -239,10 +239,19 @@
 	<?php
 }
 else {
+	if($_SESSION['id_sellsy']==''){
+		$typeRequest = "Prospects.create";
+		echo "Jamais enregistré";
+	}
+	else{
+		$typeRequest = "Prospects.update";
+		echo "Deja enregistré: ".$_SESSION['id_sellsy'];
+	}
+
 	if (isset($_POST['thirdName'], $_POST['thirdEmail'], $_POST['thirdMobile'], $_POST['thirdTel'], $_POST['thirdFax'],
 		$_POST['thirdSiret'], $_POST['thirdApenaf'], $_POST['thirdCapital'], $_POST['thirdRcs'], $_POST['thirdVat'])) {
 		$request = array(
-			'method' => 'Prospects.create',
+			'method' => $typeRequest,
 			'params' => array(
 				'third' => array(
 					'name'			=> $_POST['thirdName'],
@@ -261,7 +270,7 @@ else {
 					//'accountingcode'=> "thirdAccountingcode", // Aucune idée
 					//'auxcode'		=> "thirdAuxcode", // Aucune idée
 					//'stickyNote'	=> "thirdStickyNote" // Aucune idée
-				),
+					),
 				'contact' => array(
 					'name'		=> $_POST['contactName'],
 					'forename'	=> $_POST['contactForename'],
@@ -270,7 +279,7 @@ else {
 					'fax'		=> $_POST['contactFax'],
 					'mobile'	=> $_POST['contactMobile'],
 					'position'	=> $_POST['contactPosition']
-				),
+					),
 				'address' => array(
 					'name'		=> "Bureau",
 					'part1'		=> $_POST['addressPart1'],
@@ -278,54 +287,55 @@ else {
 					'zip'		=> $_POST['addressZip'],
 					'town'		=> $_POST['addressTown'],
 					'countrycode'	=> $_POST['addressCountrycode']
+					)
 				)
-			)
-		);
-	}
-	else {
-		$request = array(
-			'method' => 'Prospects.create',
-			'params' => array(
-				'third' => array(
-					'name'			=> $_POST['contactName'],
-					'type'			=> "person",
+);
+}
+else {
+	$request = array(
+		'method' => $typeRequest,
+		'params' => array(
+			'third' => array(
+				'name'			=> $_POST['contactName'],
+				'type'			=> "person",
 					//'email'			=> $_POST['thirdEmail'],
 					//'tel'			=> $_POST['thirdTel'],
 					//'fax'			=> $_POST['thirdFax'],
 					//'mobile'		=> $_POST['thirdMobile'],
-					'web'			=> $_POST['thirdWeb'],
+				'web'			=> $_POST['thirdWeb'],
 					//'siret'			=> $_POST['thirdSiret'],
 					//'vat'			=> $_POST['thirdVat'],
 					//'rcs'			=> $_POST['thirdRcs'],
 					//'apenaf'		=> $_POST['thirdApenaf'],
 					//'capital'		=> $_POST['thirdCapital'],
-					'tags'			=> "from_website"
+				'tags'			=> "from_website"
 					//'accountingcode'=> "thirdAccountingcode", // Aucune idée
 					//'auxcode'		=> "thirdAuxcode", // Aucune idée
 					//'stickyNote'	=> "thirdStickyNote" // Aucune idée
 				),
-				'contact' => array(
-					'name'		=> $_POST['contactName'],
-					'forename'	=> $_POST['contactForename'],
-					'email'		=> $_POST['contactEmail'],
-					'tel'		=> $_POST['contactTel'],
-					'fax'		=> $_POST['contactFax'],
-					'mobile'	=> $_POST['contactMobile'],
-					'position'	=> $_POST['contactPosition']
+			'contact' => array(
+				'name'		=> $_POST['contactName'],
+				'forename'	=> $_POST['contactForename'],
+				'email'		=> $_POST['contactEmail'],
+				'tel'		=> $_POST['contactTel'],
+				'fax'		=> $_POST['contactFax'],
+				'mobile'	=> $_POST['contactMobile'],
+				'position'	=> $_POST['contactPosition']
 				),
-				'address' => array(
-					'name'		=> "Bureau",
-					'part1'		=> $_POST['addressPart1'],
-					'part2'		=> $_POST['addressPart2'],
-					'zip'		=> $_POST['addressZip'],
-					'town'		=> $_POST['addressTown'],
-					'countrycode'	=> $_POST['addressCountrycode']
+			'address' => array(
+				'name'		=> "Bureau",
+				'part1'		=> $_POST['addressPart1'],
+				'part2'		=> $_POST['addressPart2'],
+				'zip'		=> $_POST['addressZip'],
+				'town'		=> $_POST['addressTown'],
+				'countrycode'	=> $_POST['addressCountrycode']
 				)
 			)
-		);
-	}
-	$result = sellsyConnect::load()->requestApi($request);
-	header('Location: #URL_SITE_SPIP');
+);
+}
+$result = sellsyConnect::load()->requestApi($request);
+$_SESSION['id_sellsy']=$result->response;
+header('Location: #URL_SITE_SPIP');
 }
 ?>
 </html>

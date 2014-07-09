@@ -1,2 +1,30 @@
 <link rel="stylesheet" href="css/style.css?<?php echo rand();?>" />
 <script src="js/vendor/modernizr.js"></script>
+<div class="row">
+	<div class="large-12 columns">
+		<div class="sticky">
+			<nav class="top-bar" data-topbar="" data-options="sticky_on: large">
+				<ul class="title-area">
+					<li class="name">
+						<h1><a class="menu-client" href="#URL_SITE_SPIP">ACCUEIL</a></h1>
+					</li>
+					<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+				</ul>
+
+				<section class="top-bar-section">
+
+					<ul class="right">
+						<li class="divider hide-for-small"></li>
+						<B_code_de_loic_eronne>
+						<BOUCLE_code_de_loic_eronne(RUBRIQUES){id_rubrique IN 1, 2, 3, 4}{tout}{par num titre}>
+						<li class="#EXPOSE{'active',''}">[<a href="#URL_RUBRIQUE">(#TITRE|strtoupper)</a>]</li>
+						</BOUCLE_code_de_loic_eronne>
+						</B_code_de_loic_eronne>
+
+						<//B_code_de_loic_eronne>
+					</ul>
+				</section>
+			</nav>
+		</div>
+	</div>
+</div>
