@@ -1,7 +1,8 @@
 <?php
 /*
 session_start();
-$_SESSION['statut']='#SESSION{statut}';
+if(empty($_SESSION['statut']))
+	$_SESSION['statut']='#SESSION{statut}';
 //si on est connecté le site est visible
 if(($_SESSION['statut']=='0minirezo') or ($_SESSION['statut']=='6forum')){
 	// Vérification de l'existance de la variable
@@ -18,20 +19,12 @@ if(($_SESSION['statut']=='0minirezo') or ($_SESSION['statut']=='6forum')){
 	}
 }
 //sinon il faut s'identifier
-elseif($_GET['page']!='connexion_site'){
-	header('Location: spip.php?page=login&url=spip.php');
+elseif(($_GET['page']!='connexion_site') and ($_GET['redirect']!='no')){
+	header('Location: #URL_PAGE{login}&redirect=no');
 }
 */
 ?>
 
-<?php
-if($_GET['page']!='connexion_site'){
-	header('Location: spip.php?page=login&url=spip.php');
-}
-?>
-
-<BOUCLE_sellsy(spip_sellsy){id_auteur=#SESSION{id_auteur}}>
-#SESSION_SET{id_sellsy, #ID_SELLSY}
-</BOUCLE_sellsy>
-
-#SESSION{id_sellsy}
+<BOUCLE_setSellsy(spip_sellsy){id_auteur=#SESSION{id_auteur}}>
+#SESSION_SET{id_sellsy,#ID_SELLSY}
+</BOUCLE_setSellsy>

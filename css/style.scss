@@ -1,15 +1,24 @@
 @import 'foundation';
 @import 'font-face';
 
-.menu-client {
+.title-menu-client {
 	font-family: "quicksandregular";
-	padding: 1rem 1rem;
-	text-align: center;
-	font-size: 1.75rem;
+	font-weight: bold;
+}
+
+.menu-client ul li > a {
+	display: block;
+	width: 100%;
+	color: white;
+	padding: 12px 0 12px 0;
+	padding-left: 15px;
+	font-family: "quicksandregular";
+	font-size: 0.8125rem;
+	font-weight: bold;
+	text-transform: none;
 }
 
 @media only screen and (max-width: 40em) {
-
 	/* Force table to not be like tables anymore */
 	#no-more-tables table,
 	#no-more-tables thead,
@@ -19,7 +28,6 @@
 	#no-more-tables tr {
 		display: block;
 	}
-
 	/* Hide table headers (but not display: none;, for accessibility) */
 	#no-more-tables thead tr {
 		display: none;
@@ -27,9 +35,9 @@
 		// top: -9999px;
 		// left: -9999px;
 	}
-
-	#no-more-tables tr { border: 1px solid #ccc; }
-
+	#no-more-tables tr {
+		border: 1px solid #ccc;
+	}
 	#no-more-tables td {
 		/* Behave  like a "row" */
 		border: none;

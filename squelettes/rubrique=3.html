@@ -1,7 +1,8 @@
 <BOUCLE_PRINCIPALE(RUBRIQUES){id_rubrique}{tout}{lang_select=non}>
 <INCLURE{fond=inc-html}{env}{lang}>
 <head>
-	<INCLURE{fond=identification_site}{env}{lang}>
+	[(#SESSION{id_auteur}|non) <?php header('Location: #URL_PAGE{login}') ?>]
+	<!-- <INCLURE{fond=identification_site}{env}{lang}> -->
 	<INCLURE{fond=inc-meta}{env}{lang}>
 	<INCLURE{fond=inc-meta-rubrique}{env}{lang}>
 	<INCLURE{fond=inc-head}{env}{lang}>
@@ -15,10 +16,10 @@
 		?>
 		<div class="row">
 			<form method = "post" action = "#" data-abide>
-				<div class="panel row">
+				<div class="panel">
 					<h2>Vous êtes...</h2>
 				</div>
-				<ul class="tabs row" data-tab data-options="scroll_to_content: false">
+				<ul class="tabs" data-tab data-options="scroll_to_content: false">
 					<li class="large-6 tab-title active"><a href="#corporation">Un Professionel</a></li>
 					<li class="large-6 tab-title"><a href="#person">Un Particulier</a></li>
 				</ul>
@@ -239,10 +240,19 @@
 	<?php
 }
 else {
+	if($_SESSION['id_sellsy']==''){
+		$typeRequest = "Prospects.create";
+		echo "Jamais enregistré";
+	}
+	else{
+		$typeRequest = "Prospects.update";
+		echo "Deja enregistré: ".$_SESSION['id_sellsy'];
+	}
+
 	if (isset($_POST['thirdName'], $_POST['thirdEmail'], $_POST['thirdMobile'], $_POST['thirdTel'], $_POST['thirdFax'],
 		$_POST['thirdSiret'], $_POST['thirdApenaf'], $_POST['thirdCapital'], $_POST['thirdRcs'], $_POST['thirdVat'])) {
 		$request = array(
-			'method' => 'Prospects.create',
+			'method' => $typeRequest,
 			'params' => array(
 				'third' => array(
 					'name'			=> $_POST['thirdName'],
@@ -284,7 +294,7 @@ else {
 }
 else {
 	$request = array(
-		'method' => 'Prospects.create',
+		'method' => $typeRequest,
 		'params' => array(
 			'third' => array(
 				'name'			=> $_POST['contactName'],
@@ -325,6 +335,7 @@ else {
 );
 }
 $result = sellsyConnect::load()->requestApi($request);
+$_SESSION['id_sellsy']=$result->response;
 header('Location: #URL_SITE_SPIP');
 }
 ?>
