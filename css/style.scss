@@ -1,11 +1,14 @@
+// Importation des Feuilles de Styles existantes
 @import 'foundation';
 @import 'font-face';
 
+// Police pour le lien Acceuil
 .title-menu-client {
 	font-family: "quicksandregular";
 	font-weight: bold;
 }
 
+// Police pour les liens du Menu
 .menu-client ul li > a {
 	display: block;
 	width: 100%;
@@ -18,6 +21,7 @@
 	text-transform: none;
 }
 
+// Conversion Tableau -> Tableau Mobile
 @media only screen and (max-width: 40em) {
 	/* Force table to not be like tables anymore */
 	#no-more-tables table,
@@ -48,6 +52,7 @@
 	}
 }
 
+// Adapation du Style après Conversion Tableau -> Tableau Mobile
 @media only screen and (max-width: 40em) {
 	/* (Pricing) Small Tables */
 	.sptable {

@@ -1,3 +1,4 @@
+#CACHE{0}
 <div class="formulaire_spip formulaire_inscription ajax" id="formulaire_inscription">
 [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
 [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
@@ -10,7 +11,7 @@
 		<p class='explication'><:form_forum_indiquer_nom_email:></p>
 		<ul>
 			<li class='editer saisie_nom_inscription obligatoire[ (#ENV*{erreurs}|table_valeur{nom_inscription}|oui)erreur]'>
-				<label for="nom_inscription"><:entree_nom_pseudo:> <:info_obligatoire_02:></label>
+				<label for="nom_inscription">Prénom, Nom<!-- <:entree_nom_pseudo:> --> <:info_obligatoire_02:></label>
 				[<span class="erreur_message">(#ENV*{erreurs}|table_valeur{nom_inscription})</span>]
 				<input type="text" class="text" name="nom_inscription" id="nom_inscription" value="#ENV{nom_inscription}" size="30" [(#HTML5) [(#ENV{focus}|=={nom_inscription}|oui)autofocus="autofocus" ]required="required"] autocapitalize="off" autocorrect="off" />
 			</li>

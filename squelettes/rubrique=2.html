@@ -1,11 +1,10 @@
 <BOUCLE_PRINCIPALE(RUBRIQUES){id_rubrique}{tout}{lang_select=non}>
 <INCLURE{fond=inc-html}{env}{lang}>
 <head>
-	[(#SESSION{id_auteur}|non) <?php header('Location: #URL_PAGE{login}') ?>]
-	<!-- <INCLURE{fond=identification_site}{env}{lang}> -->
 	<INCLURE{fond=inc-meta}{env}{lang}>
 	<INCLURE{fond=inc-meta-rubrique}{env}{lang}>
 	<INCLURE{fond=inc-head}{env}{lang}>
+	<INCLURE{fond=inc-secu}{env}{lang}>
 	<?php
 	include("inc/initAPI.php");
 	?>
@@ -205,7 +204,9 @@
 			</form>
 		</div>
 		<INCLURE{fond=inc-foot}{env}{lang}>
+		<!-- Script de gestion des "Pattern Custom" (Siret, etc...)  -->
 		<script src="js/csValidate.min.js"></script>
+		<!-- Script de (des)Activation des champs selon le statut -->
 		<script>
 			$('#person').on('toggled', function (event, tab) {
 				// Informations de la Société
@@ -240,6 +241,7 @@
 	<?php
 }
 else {
+	// Vérifie la présence d'un ID Sellsy: Création ou Mise à Jour
 	if($_SESSION['id_sellsy']==''){
 		$typeRequest = "Prospects.create";
 		echo "Jamais enregistré";
@@ -249,6 +251,7 @@ else {
 		echo "Deja enregistré: ".$_SESSION['id_sellsy'];
 	}
 
+	// Vérifie le Statut afin d'adapter la requête
 	if (isset($_POST['thirdName'], $_POST['thirdEmail'], $_POST['thirdMobile'], $_POST['thirdTel'], $_POST['thirdFax'],
 		$_POST['thirdSiret'], $_POST['thirdApenaf'], $_POST['thirdCapital'], $_POST['thirdRcs'], $_POST['thirdVat'])) {
 		$request = array(
@@ -334,8 +337,11 @@ else {
 			)
 );
 }
+// Exécution de la requête et stockage du résultat dans une variable
 $result = sellsyConnect::load()->requestApi($request);
+// Stockage de la variable dans la BDD
 $_SESSION['id_sellsy']=$result->response;
+// Retour au Sommaire
 header('Location: #URL_SITE_SPIP');
 }
 ?>

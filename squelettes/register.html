@@ -1,16 +1,15 @@
+#CACHE{0}
 <INCLURE{fond=inc-html}{env}{lang}>
 
 <head>
 	<title>#NOM_SITE_SPIP</title>
-
-	<INCLURE{fond=identification_site}{env}{lang}>
-
 	<INCLURE{fond=inc-meta}{env}{lang}>
-
 	<INCLURE{fond=inc-head}{env}{lang}>
+	<!-- <INCLURE{fond=inc-secu}{env}{lang}> -->
 </head>
 <body>
 	<div class="row">
+	<!-- Affichage du Formulaire d'Inscription -->
 		[(#FORMULAIRE_INSCRIPTION{6forum})]
 	</div>
 	<div class="row">
