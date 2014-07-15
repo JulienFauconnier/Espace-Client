@@ -5,345 +5,92 @@
 	<INCLURE{fond=inc-meta-rubrique}{env}{lang}>
 	<INCLURE{fond=inc-head}{env}{lang}>
 	<INCLURE{fond=inc-secu}{env}{lang}>
-	<?php
-	include("inc/initAPI.php");
-	?>
 </head>
 <body>
-	<?php
-	if($_POST['validate'] != 'ok') {
-		?>
-		<div class="row">
-			<form method = "post" action = "#" data-abide>
-				<div class="panel">
-					<h2>Vous êtes...</h2>
+	<div class="row">
+		<dl class="accordion" data-accordion>
+			<dd class="accordion-navigation">
+				<a href="#panel1">Mes Devis</a>
+				<div id="panel1" class="content active">
+					<!-- Affichage du Tableau des Items Ajoutés -->
+					<fieldset>
+						<legend></legend>
+						<table id="no-more-tables" class="columns sptable">
+							<thead>
+								<tr>
+								<th width="16%">Date</th><th width="60%">Objet</th><th width="16%">Montant</th><th width="8%"></th>
+								</tr>
+							</thead>
+							<tbody id="docList">&nbsp;</tbody>
+						</table>
+					</fieldset>
 				</div>
-				<ul class="tabs" data-tab data-options="scroll_to_content: false">
-					<li class="large-6 tab-title active"><a href="#corporation">Un Professionel</a></li>
-					<li class="large-6 tab-title"><a href="#person">Un Particulier</a></li>
-				</ul>
-				<div class="tabs-content row">
-					<div class="content active" id="corporation">
-						<div class="large-6 columns">
-							<fieldset>
-								<legend>Informations de la Société</legend>
-								<div>
-									<label for="thirdName">Nom *
-										<input type="text" id="thirdName" name="thirdName" placeholder="Votre-Entreprise" required />
-									</label>
-									<small class="error">Un nom de société est requis</small>
-								</div>
-								<div>
-									<label for="thirdEmail">Mail *
-										<input type="email" id="thirdEmail" name="thirdEmail" placeholder="mail@votre-entreprise.fr" required />
-									</label>
-									<small class="error">Un courriel valide est requis</small>
-								</div>
-								<div>
-									<label for="thirdMobile">Mobile *
-										<input type="text" id="thirdMobile" name="thirdMobile" pattern="^0[0-9]{9}" placeholder="0696000000" required />
-									</label>
-									<small class="error">Un numéro de mobile valide est requis</small>
-								</div>
-								<div>
-									<label for="thirdTel">Tel
-										<input type="text" id="thirdTel" name="thirdTel" pattern="^0[0-9]{9}" placeholder="0596000000" />
-									</label>
-									<small class="error">Numéro de téléphone invalide</small>
-								</div>
-								<div>
-									<label for="thirdFax">Fax
-										<input type="text" id="thirdFax" name="thirdFax" pattern="^0[0-9]{9}" placeholder="0596000000" />
-									</label>
-									<small class="error">Numéro de FAX invalide</small>
-								</div>
-							</fieldset>
-						</div>
-						<div class="large-6 columns">
-							<fieldset>
-								<legend>Informations Complémentaires (Facultatives)</legend>
-								<div>
-									<label for="thirdSiret">N° SIRET
-										<input type="text" id="thirdSiret" name="thirdSiret" data-abide-validator="valid_siret" />
-									</label>
-									<small class="error">Numéro SIRET invalide</small>
-								</div>
-								<div>
-									<label for="thirdApenaf">Code NAF(APE)
-										<input type="text" id="thirdApenaf" name="thirdApenaf" data-abide-validator="valid_naf" />
-									</label>
-									<small class="error">Code invalide</small>
-								</div>
-								<div>
-									<label for="thirdCapital">Capital Social
-										<input type="text" id="thirdCapital" name="thirdCapital" pattern="number" />
-									</label>
-									<small class="error">Capital Social invalide</small>
-								</div>
-								<div>
-									<label for="thirdRcs">RCS
-										<input type="text" id="thirdRcs" name="thirdRcs" />
-									</label>
-									<small class="error">Numéro RCF invalide</small>
-								</div>
-								<div>
-									<label for="thirdVat">N° TVA Intra
-										<input type="text" id="thirdVat" name="thirdVat" data-abide-validator="valid_vat" />
-									</label>
-									<small class="error">Numéro de TVA Intra invalide</small>
-								</div>
-							</fieldset>
-						</div>
-					</div>
-					<div class="content" id="person">
-						<div class="large-6 columns">
-						</div>
-						<div class="large-6 columns">
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-6 columns">
+			</dd>
+			<dd class="accordion-navigation">
+				<a href="#panel2">Créer un Devis</a>
+				<div id="panel2" class="content">
+					<form>
 						<fieldset>
-							<legend>Informations de Contact</legend>
-							<div>
-								<label for="contactForename">Prénom *
-									<input type="text" id="contactForename" name="contactForename"  pattern="[a-zA-ZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØŒŠþÙÚÛÜÝŸàáâãäåæçèéêëìíîïðñòóôõöøœšÞùúûüýÿ\- ]+" placeholder="Albert" required />
+							<legend>Paramètres</legend>
+							<div class="medium-2 large-2 columns">
+								<label for="choix_type">Type:
+									<select id="choix_type" name="choix_type">
+										<option id="none">Choisir un Type</option>
+										<option id="item">Produit</option>
+										<option id="service">Service</option>
+									</select>
 								</label>
-								<small class="error">Un prénom valide est requis</small>
 							</div>
-							<div>
-								<label for="contactName">Nom *
-									<input type="text" id="contactName" name="contactName" pattern="[a-zA-ZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØŒŠþÙÚÛÜÝŸàáâãäåæçèéêëìíîïðñòóôõöøœšÞùúûüýÿ\- ]+" placeholder="Enstein" required />
+							<div class="medium-3 large-3 columns">
+								<label for="choix_cat">Catégorie:
+									<select id="choix_cat" name="choix_cat">
+									</select>
 								</label>
-								<small class="error">Un nom valide est requis</small>
 							</div>
-							<div>
-								<label for="contactPosition">Fonction
-									<input type="text" id="contactPosition" name="contactPosition" pattern="[a-zA-ZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØŒŠþÙÚÛÜÝŸàáâãäåæçèéêëìíîïðñòóôõöøœšÞùúûüýÿ\- ]+" placeholder="Gérant" />
+							<div class="medium-3 large-3 columns">
+								<label for "choix_id">Prestation:
+									<select id="choix_id" name="choix_id">
+									</select>
 								</label>
-								<small class="error">Un nom de fonction valide est requis</small>
 							</div>
-							<div>
-								<label for="contactEmail">Mail *
-									<input type="email" id="contactEmail" name="contactEmail" placeholder="contact@votre-entreprise.fr" required />
+							<div class="medium-2 large-2 columns">
+								<label for="choix_qt">Quantité:
+									<input id="choix_qt" name="choix_qt" type="number" value="1" min="1" max="10"/>
 								</label>
-								<small class="error">Un courriel valide est requis</small>
 							</div>
-							<div>
-								<label for="contactMobile">Mobile *
-									<input type="tel" id="contactMobile" name="contactMobile" pattern="^0[0-9]{9}" placeholder="0696000000" required />
+							<div class="medium-2 large-2 columns">
+								<label for="addb">
+									<button class="expand radius" type="button" id="addb">Ajouter</button>
 								</label>
-								<small class="error">Un numéro de mobile valide est requis</small>
-							</div>
-							<div>
-								<label for="contactTel">Tel
-									<input type="tel" id="contactTel" name="contactTel" pattern="^0[0-9]{9}" placeholder="0596000000" />
-								</label>
-								<small class="error">Numéro de téléphone invalide</small>
-							</div>
-							<div>
-								<label for="contactFax">Fax
-									<input type="tel" id="contactFax" name="contactFax" pattern="^0[0-9]{9}" placeholder="0596000000" />
-								</label>
-								<small class="error">Numéro de FAX invalide</small>
 							</div>
 						</fieldset>
-					</div>
-					<div class="large-6 columns">
 						<fieldset>
-							<legend>Adresse</legend>
-							<div>
-								<label for="thirdWeb">Site web
-									<input type="url" id="thirdWeb" name="thirdWeb" placeholder="http://www.votre-entreprise.fr" />
-								</label>
-								<small class="error">URL invalide</small>
-							</div>
-							<div>
-								<label for="addressPart1">Adresse *
-									<input type="text" id="addressPart1" name="addressPart1" required />
-								</label>
-								<small class="error">Une adresse valide est requise</small>
-							</div>
-							<div>
-								<label for="addressPart2">Adresse (Suite)
-									<input type="text" id="addressPart2" name="addressPart2" />
-								</label>
-								<small class="error">Suite de l'adresse invalide</small>
-							</div>
-							<div>
-								<label for="addressZip">Code Postal *
-									<input type="text" id="addressZip" name="addressZip" pattern="[0-9]{5}" placeholder="97200" required />
-								</label>
-								<small class="error">Une Code Postal valide est requis</small>
-							</div>
-							<div>
-								<label for="addressTown">Ville *
-									<input type="text" id="addressTown" name="addressTown" placeholder="Fort-de-France" required />
-								</label>
-								<small class="error">Une Ville valide est requise</small>
-							</div>
-							<div>
-								<label for="addressCountrycode">Code Pays *
-									<input type="text" id="addressCountrycode" name="addressCountryCode" placeholder="FR" required />
-								</label>
-								<small class="error">Un Code Pays valide est requis</small>
-							</div>
+							<legend>Aperçu</legend>
+							<!-- Rajouter ici le champ "Objet" -->
+							<!-- Affichage du Tableau des Items Ajoutés -->
+							<table id="no-more-tables" class="columns sptable">
+								<thead>
+									<tr>
+									<th width="16%">Nom</th><th width="40%">Description</th><th width="10%">Qte</th>
+									<th width="13%">PU HT</th><th width="13%">Total HT</th><th width="8%"></th>
+									</tr>
+								</thead>
+								<tbody id="result">&nbsp;</tbody>
+							</table>
 						</fieldset>
-					</div>
+						<div class="medium-2 medium-push-4 large-2 large-push-4 columns text-right">
+							<button class="expand radius" type="button" id="submit">Valider</button>
+						</div>
+						<div class="medium-2 medium-pull-4 large-2 large-pull-4 large columns text-left">
+							<button class="expand radius" type="button" id="reset">Réinitialiser</button>
+						</div>
+					</form>
 				</div>
-				<div class="row">
-					<div class="medium-2 medium-push-4 large-2 large-push-4 columns text-right">
-						<button class="expand radius medium green" type="submit">Envoyer</button>
-					</div>
-					<div class="medium-2 medium-pull-4 large-2 large-pull-4 large columns text-left">
-						<button class="expand radius medium green" type="reset">Réinitialiser</button>
-					</div>
-				</div>
-				<input type="hidden" name="validate" id="validate" value="ok"/>
-			</form>
-		</div>
-		<INCLURE{fond=inc-foot}{env}{lang}>
-		<!-- Script de gestion des "Pattern Custom" (Siret, etc...)  -->
-		<script src="js/csValidate.min.js"></script>
-		<!-- Script de (des)Activation des champs selon le statut -->
-		<script>
-			$('#person').on('toggled', function (event, tab) {
-				// Informations de la Société
-				$("#thirdName").prop('disabled', true);
-				$("#thirdEmail").prop('disabled', true);
-				$("#thirdMobile").prop('disabled', true);
-				$("#thirdTel").prop('disabled', true);
-				$("#thirdFax").prop('disabled', true);
-				// Informations Complémentaires (Facultatives)
-				$("#thirdSiret").prop('disabled', true);
-				$("#thirdApenaf").prop('disabled', true);
-				$("#thirdCapital").prop('disabled', true);
-				$("#thirdRcs").prop('disabled', true);
-				$("#thirdVat").prop('disabled', true);
-			});
-			$('#corporation').on('toggled', function (event, tab) {
-				// Informations de la Société
-				$("#thirdName").prop('disabled', false);
-				$("#thirdEmail").prop('disabled', false);
-				$("#thirdMobile").prop('disabled', false);
-				$("#thirdTel").prop('disabled', false);
-				$("#thirdFax").prop('disabled', false);
-				// Informations Complémentaires (Facultatives)
-				$("#thirdSiret").prop('disabled', false);
-				$("#thirdApenaf").prop('disabled', false);
-				$("#thirdCapital").prop('disabled', false);
-				$("#thirdRcs").prop('disabled', false);
-				$("#thirdVat").prop('disabled', false);
-			});
-		</script>
-	</body>
-	<?php
-}
-else {
-	// Vérifie la présence d'un ID Sellsy: Création ou Mise à Jour
-	if($_SESSION['id_sellsy']==''){
-		$typeRequest = "Prospects.create";
-		echo "Jamais enregistré";
-	}
-	else{
-		$typeRequest = "Prospects.update";
-		echo "Deja enregistré: ".$_SESSION['id_sellsy'];
-	}
-
-	// Vérifie le Statut afin d'adapter la requête
-	if (isset($_POST['thirdName'], $_POST['thirdEmail'], $_POST['thirdMobile'], $_POST['thirdTel'], $_POST['thirdFax'],
-		$_POST['thirdSiret'], $_POST['thirdApenaf'], $_POST['thirdCapital'], $_POST['thirdRcs'], $_POST['thirdVat'])) {
-		$request = array(
-			'method' => $typeRequest,
-			'params' => array(
-				'third' => array(
-					'name'			=> $_POST['thirdName'],
-					'type'			=> "corporation",
-					'email'			=> $_POST['thirdEmail'],
-					'tel'			=> $_POST['thirdTel'],
-					'fax'			=> $_POST['thirdFax'],
-					'mobile'		=> $_POST['thirdMobile'],
-					'web'			=> $_POST['thirdWeb'],
-					'siret'			=> $_POST['thirdSiret'],
-					'vat'			=> $_POST['thirdVat'],
-					'rcs'			=> $_POST['thirdRcs'],
-					'apenaf'		=> $_POST['thirdApenaf'],
-					'capital'		=> $_POST['thirdCapital'],
-					'tags'			=> "from_website"
-					//'accountingcode'=> "thirdAccountingcode", // Aucune idée
-					//'auxcode'		=> "thirdAuxcode", // Aucune idée
-					//'stickyNote'	=> "thirdStickyNote" // Aucune idée
-					),
-				'contact' => array(
-					'name'		=> $_POST['contactName'],
-					'forename'	=> $_POST['contactForename'],
-					'email'		=> $_POST['contactEmail'],
-					'tel'		=> $_POST['contactTel'],
-					'fax'		=> $_POST['contactFax'],
-					'mobile'	=> $_POST['contactMobile'],
-					'position'	=> $_POST['contactPosition']
-					),
-				'address' => array(
-					'name'		=> "Bureau",
-					'part1'		=> $_POST['addressPart1'],
-					'part2'		=> $_POST['addressPart2'],
-					'zip'		=> $_POST['addressZip'],
-					'town'		=> $_POST['addressTown'],
-					'countrycode'	=> $_POST['addressCountrycode']
-					)
-				)
-);
-}
-else {
-	$request = array(
-		'method' => $typeRequest,
-		'params' => array(
-			'third' => array(
-				'name'			=> $_POST['contactName'],
-				'type'			=> "person",
-					//'email'			=> $_POST['thirdEmail'],
-					//'tel'			=> $_POST['thirdTel'],
-					//'fax'			=> $_POST['thirdFax'],
-					//'mobile'		=> $_POST['thirdMobile'],
-				'web'			=> $_POST['thirdWeb'],
-					//'siret'			=> $_POST['thirdSiret'],
-					//'vat'			=> $_POST['thirdVat'],
-					//'rcs'			=> $_POST['thirdRcs'],
-					//'apenaf'		=> $_POST['thirdApenaf'],
-					//'capital'		=> $_POST['thirdCapital'],
-				'tags'			=> "from_website"
-					//'accountingcode'=> "thirdAccountingcode", // Aucune idée
-					//'auxcode'		=> "thirdAuxcode", // Aucune idée
-					//'stickyNote'	=> "thirdStickyNote" // Aucune idée
-				),
-			'contact' => array(
-				'name'		=> $_POST['contactName'],
-				'forename'	=> $_POST['contactForename'],
-				'email'		=> $_POST['contactEmail'],
-				'tel'		=> $_POST['contactTel'],
-				'fax'		=> $_POST['contactFax'],
-				'mobile'	=> $_POST['contactMobile'],
-				'position'	=> $_POST['contactPosition']
-				),
-			'address' => array(
-				'name'		=> "Bureau",
-				'part1'		=> $_POST['addressPart1'],
-				'part2'		=> $_POST['addressPart2'],
-				'zip'		=> $_POST['addressZip'],
-				'town'		=> $_POST['addressTown'],
-				'countrycode'	=> $_POST['addressCountrycode']
-				)
-			)
-);
-}
-// Exécution de la requête et stockage du résultat dans une variable
-$result = sellsyConnect::load()->requestApi($request);
-// Stockage de la variable dans la BDD
-$_SESSION['id_sellsy']=$result->response;
-// Retour au Sommaire
-header('Location: #URL_SITE_SPIP');
-}
-?>
+			</dd>
+		</dl>
+	</div>
+	<INCLURE{fond=inc-foot}{env}{lang}>
+	<script src="js/csData.min.js"></script>
+</body>
 </html>
 </BOUCLE_PRINCIPALE>

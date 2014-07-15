@@ -14,7 +14,7 @@ if(($_SESSION['statut']=='0minirezo') or ($_SESSION['statut']=='6forum')){
 	}
 	// On vérifie si le client à un identifiant sellsy
 	if((empty($_SESSION['id_sellsy'])) and ($_SESSION['statut']=='0minirezo') and ($_GET['redirect']!='no')){
-		header('Location: #URL_RUBRIQUE{2}&redirect=no');
+		header('Location: #URL_RUBRIQUE{1}&redirect=no');
 	}
 }
 //sinon il faut s'identifier

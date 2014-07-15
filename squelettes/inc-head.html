@@ -10,14 +10,13 @@
 			<ul class="right">
 				<li class="divider hide-for-small"></li>
 				<B_menu_rubriques>
-				<BOUCLE_menu_rubriques(RUBRIQUES){id_rubrique IN 1, 2, 3, 4}{tout}{par num titre}>
-				<li class="#EXPOSE{'active',''}">[<a href="#URL_RUBRIQUE">(#TITRE|strtoupper)</a>]</li>
+				<BOUCLE_menu_rubriques(RUBRIQUES){id_rubrique IN 1, 2, 4, 3}{tout}>
+				[(#SESSION{id_auteur}|oui)<li class="#EXPOSE{'active',''}">[<a href="#URL_RUBRIQUE">(#TITRE|strtoupper)</a>]</li>]
 				</BOUCLE_menu_rubriques>
 				</B_menu_rubriques>
-				<li>[(#SESSION{id_auteur}|non)<a href="#URL_PAGE{login}">LOGIN</a>][(#SESSION{id_auteur}|oui)<a href="#URL_LOGOUT">LOGOUT</a>]</li>
+				[(#SESSION{id_auteur}|non)<li class="active"><a href="#URL_PAGE{login}">LOGIN</a></li>]
+				[(#SESSION{id_auteur}|oui)<li><a href="#URL_LOGOUT">LOGOUT</a></li>]
 			</ul>
 		</section>
 	</nav>
 </div>
-
-<!-- [(#SESSION{id_auteur}|non) #FORMULAIRE_LOGIN_PUBLIC] -->

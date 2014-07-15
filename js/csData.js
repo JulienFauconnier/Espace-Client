@@ -8,6 +8,29 @@ $(document).ready(function (){
 	var doc=[];
 	var init;
 
+	function docRefresh(){
+		$('#docList').empty();
+		$.post('inc/getDList.php', function (response){
+			var dlist=jQuery.parseJSON(response);
+			$.each(dlist, function(){
+				$('#docList').append('<tr><td class="date">'+this.created
+				+'</td><td class="description">'+this.subject
+				+'</td><td class="price">'+Math.round(this.totalAmount*100)/100
+				+'€ TTC</td><td class="cta-button"><button class="alert tiny radius ddl" id="'+this.id+'" type="button"><strong>⇩</strong></button></td></tr>');
+			});
+		});
+	}
+
+	$(document).on('click','.ddl',function (){
+		$.post('inc/getDLink.php',{
+			docid: this.id
+		}, function (response){
+    		window.location.href = 'https://sellsy.com/'+response;
+		});
+	});
+
+	docRefresh();
+
 	function rezer(opt1, opt2){
 		if (opt1==1) {
 			c_type=$("#choix_type option:selected").attr("id");
@@ -114,6 +137,7 @@ $(document).ready(function (){
 			}, function (response){
 				doc=[];
 				refresh();
+				docRefresh();
 			});
 		}
 	});
