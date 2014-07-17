@@ -3,7 +3,7 @@
 [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
 [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 [(#ENV{editable})
-<form method="post" action="#ENV{action}">
+<form method="post" action="#ENV{action}" data-abide>
 	#ACTION_FORMULAIRE{#ENV{action}}
 	<fieldset>
 		<!-- #INCLURE{fond=formulaires/inc-inscription-explication,env} -->
@@ -11,14 +11,16 @@
 		<p class='explication'><:form_forum_indiquer_nom_email:></p>
 		<ul>
 			<div class='editer saisie_nom_inscription obligatoire[ (#ENV*{erreurs}|table_valeur{nom_inscription}|oui)erreur]'>
-				<label for="nom_inscription">Prénom, Nom<!-- <:entree_nom_pseudo:> --> <:info_obligatoire_02:></label>
-				[<span class="erreur_message">(#ENV*{erreurs}|table_valeur{nom_inscription})</span>]
-				<input type="text" class="text" name="nom_inscription" id="nom_inscription" value="#ENV{nom_inscription}" size="30" [(#HTML5) [(#ENV{focus}|=={nom_inscription}|oui)autofocus="autofocus" ]required="required"] autocapitalize="off" autocorrect="off" />
+				<label for="nom_inscription">Prénom, Nom<!-- <:entree_nom_pseudo:> --> <:info_obligatoire_02:>
+					<input type="text" class="text" name="nom_inscription" id="nom_inscription" value="#ENV{nom_inscription}" size="30" [(#HTML5) [(#ENV{focus}|=={nom_inscription}|oui)autofocus="autofocus" ]required="required"] autocapitalize="off" autocorrect="off" />
+				</label>
+				<small class="error">Vos Prénom et Nom sont requis</small>
 			</div>
 			<div class='editer saisie_mail_inscription obligatoire[ (#ENV*{erreurs}|table_valeur{mail_inscription}|oui)erreur]'>
-				<label for="mail_inscription"><:entree_adresse_email:> <:info_obligatoire_02:></label>
-				[<span class="erreur_message">(#ENV*{erreurs}|table_valeur{mail_inscription})</span>]
-				<input[ (#HTML5|?{required="required" type="email" class="text email",type="text" class="text"})] name="mail_inscription" id="mail_inscription" value="#ENV{mail_inscription}" size="30"[(#ENV{focus}|=={mail_inscription}|et{#HTML5}|oui) autofocus="autofocus"] autocapitalize="off" autocorrect="off" />
+				<label for="mail_inscription"><:entree_adresse_email:> <:info_obligatoire_02:>
+					<input[ (#HTML5|?{required="required" type="email" class="text email",type="text" class="text"})] name="mail_inscription" id="mail_inscription" value="#ENV{mail_inscription}" size="30"[(#ENV{focus}|=={mail_inscription}|et{#HTML5}|oui) autofocus="autofocus"] autocapitalize="off" autocorrect="off" />
+				</label>
+				<small class="error">Un courriel valide est requis</small>
 			</div>
 		</ul>
 	</fieldset>

@@ -8,12 +8,24 @@
 	<INCLURE{fond=inc-secu}{env}{lang}>
 </head>
 <body>
+
 	<div class="row">
-	<!-- Affichage du Formulaire de Login Public -->
-		#FORMULAIRE_LOGIN_PUBLIC
-	</div>
-	<div class="row">
-		<a href="#URL_PAGE{register}" class="button expand radius">S'enregistrer</a>
+		<dl class="accordion" data-accordion>
+			<dd class="accordion-navigation">
+				<a href="#panel1">Pas encore de compte ? Inscrivez-vous !</a>
+				<div id="panel1" class="content">
+					<!-- Affichage du Formulaire d'Inscription -->
+					[(#FORMULAIRE_INSCRIPTION{6forum})]
+				</div>
+			</dd>
+			<dd class="accordion-navigation">
+				<a href="#panel2">Connexion</a>
+				<div id="panel2" class="content active">
+					<!-- Affichage du Formulaire de Login Public -->
+					#FORMULAIRE_LOGIN_PUBLIC
+				</div>
+			</dd>
+		</dl>
 	</div>
 	<INCLURE{fond=inc-foot}{env}{lang}>
 </body>

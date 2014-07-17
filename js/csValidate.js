@@ -115,3 +115,169 @@ $(document).foundation({
 		}
 	}
 });
+
+$(document).ready(function (){
+
+	function print_r(theObj){
+		if(theObj.constructor == Array || theObj.constructor == Object){
+			document.write("<ul>")
+			for(var p in theObj){
+				if(theObj[p].constructor == Array || theObj[p].constructor == Object){
+					document.write("<li>["+p+"] => "+typeof(theObj)+"</li>");
+					document.write("<ul>")
+					print_r(theObj[p]);
+					document.write("</ul>")
+				} else {
+					document.write("<li>["+p+"] => "+theObj[p]+"</li>");
+				}
+			}
+			document.write("</ul>")
+		}
+	}
+
+	function getOld() {
+		$.post('inc/getClient.php', function (response){
+			var dataC=jQuery.parseJSON(response);
+			if(dataC!='') {
+				// Récupération Informations "third", data, success
+				$("#contactName").val(dataC.third.name);
+				$("#thirdEmail").val(dataC.third.email);
+				$("#thirdTel").val(dataC.third.tel);
+				$("#thirdFax").val(dataC.third.fax);
+				$("#thirdMobile").val(dataC.third.mobile);
+				$("#thirdWeb").val(dataC.third.web);
+				$("#thirdSiret").val(dataC.third.siret);
+				$("#thirdVat").val(dataC.third.vat);
+				$("#thirdRcs").val(dataC.third.rcs);
+				$("#thirdApenaf").val(dataC.third.email);
+				$("#thirdCapital").val(dataC.third.capital);
+
+				// Récupération Informations "contact"
+				$("#contactName").val(dataC.contact.name);
+				$("#contactForename").val(dataC.contact.forename);
+				$("#contactEmail").val(dataC.contact.email);
+				$("#contactTel").val(dataC.contact.tel);
+				$("#contactFax").val(dataC.contact.fax);
+				$("#contactMobile").val(dataC.contact.mobile);
+				$("#contactPosition").val(dataC.contact.position);
+
+				// Récupération Informations "address"
+				$("#addressPart1").val(dataC.address.part1);
+				$("#addressPart2").val(dataC.address.part2);
+				$("#addressZip").val(dataC.address.zip);
+				$("#addressTown").val(dataC.address.town);
+				$("#addressCountrycode").val(dataC.address.countrycode);
+			}
+		});
+}
+
+	//getOld();
+
+	$('#submit').click(function (){
+		var dataC=[];
+		var third=[];
+		var contact=[];
+		var address=[];
+
+		// Récupération Informations "third"
+		if ($("#corporation").hasClass('active')) {
+			third['name'] = $("#thirdName").val();
+			third['type'] = "corporation";
+		}
+		else {
+			third['name'] = $("#contactName").val();
+			third['type'] = "person";
+		}
+		if ($("#thirdEmail").val() !='') {
+			third['email'] = $("#thirdEmail").val();
+		};
+		if ($("#thirdTel").val() !='') {
+			third['tel'] = $("#thirdTel").val();
+		};
+		if ($("#thirdFax").val() !='') {
+			third['fax'] = $("#thirdFax").val();
+		};
+		if ($("#thirdMobile").val() !='') {
+			third['mobile'] = $("#thirdMobile").val();
+		};
+		if ($("#thirdWeb").val() !='') {
+			third['web'] = $("#thirdWeb").val();
+		};
+		if ($("#thirdSiret").val() !='') {
+			third['siret'] = $("#thirdSiret").val();
+		};
+		if ($("#thirdVat").val() !='') {
+			third['vat'] = $("#thirdVat").val();
+		};
+		if ($("#thirdRcs").val() !='') {
+			third['rcs'] = $("#thirdRcs").val();
+		};
+		if ($("#thirdApenaf").val() !='') {
+			third['email'] = $("#thirdApenaf").val();
+		};
+		if ($("#thirdCapital").val() !='') {
+			third['capital'] = $("#thirdCapital").val();
+		};
+		third['tags'] = "from_website";
+    	// Assignation au tableau de dataC
+    	dataC['third']=third;
+
+    	console.log("phase 1");
+
+		// Récupération Informations "contact"
+		if ($("#contactName").val() !='') {
+			contact['name'] = $("#contactName").val();
+		};
+		if ($("#contactForename").val() !='') {
+			contact['forename'] = $("#contactForename").val();
+		};
+		if ($("#contactEmail").val() !='') {
+			contact['email'] = $("#contactEmail").val();
+		};
+		if ($("#contactTel").val() !='') {
+			contact['tel'] = $("#contactTel").val();
+		};
+		if ($("#contactFax").val() !='') {
+			contact['fax'] = $("#contactFax").val();
+		};
+		if ($("#contactMobile").val() !='') {
+			contact['mobile'] = $("#contactMobile").val();
+		};
+		if ($("#contactPosition").val() !='') {
+			contact['position'] = $("#contactPosition").val();
+		};
+		// Assignation au tableau de dataC
+		dataC['contact']=contact;
+
+		// Récupération Informations "address"
+		address['name'] = "Bureau";
+		if ($("#addressPart1").val() !='') {
+			address['part1'] = $("#addressPart1").val();
+		};
+		if ($("#addressPart2").val() !='') {
+			address['part2'] = $("#addressPart2").val();
+		};
+		if ($("#addressZip").val() !='') {
+			address['zip'] = $("#addressZip").val();
+		};
+		if ($("#addressTown").val() !='') {
+			address['town'] = $("#addressTown").val();
+		};
+		if ($("#addressCountrycode").val() !='') {
+			address['countrycode'] = $("#addressCountrycode").val();
+		};
+		// Assignation au tableau de dataC
+		dataC['address']=address;
+
+		console.log(print_r(dataC));
+
+		$.post('inc/createClient.php', {
+			params: dataC
+		}, function (response){
+			// Retour au Sommaire
+			// alert(response);
+			console.log(response);
+			// window.location.href = 'URL_SITE_SPIP';
+		});
+	});
+});
